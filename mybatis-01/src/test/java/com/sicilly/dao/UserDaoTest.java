@@ -16,10 +16,10 @@ public class UserDaoTest {
 
         try {
             // 方式一：getMapper
-            // 先获得userDao接口里的对象
-            UserDao userDao=sqlSession.getMapper(UserDao.class);
+            // 先获得userMapper接口里的对象
+            UserMapper userMapper=sqlSession.getMapper(UserMapper.class);
             // 就可以执行对象里面的方法
-            List<User> userList=userDao.getUserList();
+            List<User> userList=userMapper.getUserList();
 
             for (User user: userList) {
                 System.out.println(user);

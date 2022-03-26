@@ -4,6 +4,7 @@ import com.sicilly.pojo.User;
 
 import java.util.List;
 
-public interface UserDao {
+public interface UserMapper {
+    // 查询全部用户
     List<User> getUserList();
 }

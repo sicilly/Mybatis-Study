@@ -3,9 +3,11 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.sicilly.dao.UserDao">
+<!--namespace绑定一个对应的Mapper接口-->
+<mapper namespace="com.sicilly.dao.UserMapper">
 
-
+<!--    查询语句 id就是对应的namespace中的方法名-->
+<!--    resultType是sql语句执行的返回值-->
     <select id="getUserList" resultType="com.sicilly.pojo.User">
         select * from mybatis.user
     </select>
