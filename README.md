@@ -161,7 +161,7 @@ com/sicilly/dao/UserMapper.java  是一个接口
 ```java
 package com.sicilly.dao;
 
-import com.sicilly.pojo.User;
+import com.User;
 
 import java.util.List;
 
@@ -179,11 +179,11 @@ com/sicilly/dao/UserMapper.xml  绑定接口，在这里写sql语句
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!--namespace绑定一个对应的Mapper接口-->
-<mapper namespace="com.sicilly.dao.UserMapper">
+<mapper namespace="com.UserMapper">
 
 <!--    查询语句 id就是对应的namespace中的方法名-->
 <!--    resultType是sql语句执行的返回值-->
-    <select id="getUserList" resultType="com.sicilly.pojo.User">
+    <select id="getUserList" resultType="com.User">
         select * from mybatis.user
     </select>
 
@@ -199,7 +199,7 @@ UserMapper.java写接口
 ```java
 package com.sicilly.dao;
 
-import com.sicilly.pojo.User;
+import com.User;
 
 import java.util.List;
 
@@ -222,9 +222,9 @@ UserMapper.xml 补充实现类 写sql
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!--namespace绑定一个对应的Mapper接口-->
-<mapper namespace="com.sicilly.dao.UserMapper">
+<mapper namespace="com.UserMapper">
 
-    <select id="getUserById" parameterType="int" resultType="com.sicilly.pojo.User">
+    <select id="getUserById" parameterType="int" resultType="com.User">
         select * from mybatis.user where id=#{id}
     </select>
 
@@ -236,8 +236,8 @@ UserDaoTest.java 测试
 ```java
 package com.sicilly.dao;
 
-import com.sicilly.pojo.User;
-import com.sicilly.utils.MybatisUtils;
+import com.User;
+import com.MybatisUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 
@@ -277,7 +277,7 @@ UserMapper.java
 ```java
 package com.sicilly.dao;
 
-import com.sicilly.pojo.User;
+import com.User;
 
 import java.util.List;
 
@@ -307,11 +307,11 @@ UserMapper.xml
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!--namespace绑定一个对应的Mapper接口-->
-<mapper namespace="com.sicilly.dao.UserMapper">
+<mapper namespace="com.UserMapper">
 
 
 <!--User对象中的属性，可以直接取出来-->
-    <insert id="addUser" parameterType="com.sicilly.pojo.User">
+    <insert id="addUser" parameterType="com.User">
         insert into mybatis.user (id,name,pwd) values(#{id},#{name},#{pwd})
     </insert>
 
@@ -360,7 +360,7 @@ UserMapper.java
 ```java
 package com.sicilly.dao;
 
-import com.sicilly.pojo.User;
+import com.User;
 
 import java.util.List;
 
@@ -391,9 +391,9 @@ UserMapper.xml
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!--namespace绑定一个对应的Mapper接口-->
-<mapper namespace="com.sicilly.dao.UserMapper">
+<mapper namespace="com.UserMapper">
 
-    <update id="updateUser" parameterType="com.sicilly.pojo.User">
+    <update id="updateUser" parameterType="com.User">
         update mybatis.user
         set name = #{name},pwd=#{pwd}
         where id=#{id};
@@ -414,8 +414,8 @@ UserDapTest.java
 ```java
 package com.sicilly.dao;
 
-import com.sicilly.pojo.User;
-import com.sicilly.utils.MybatisUtils;
+import com.User;
+import com.MybatisUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 
@@ -619,7 +619,7 @@ mybatis-config.xml (同时有的话，优先走外面properties)
 
 ```xml
 <typeAliases>
-    <typeAlias type="com.sicilly.pojo.User" alias="User"></typeAlias>
+    <typeAlias type="com.User" alias="User"></typeAlias>
 </typeAliases>
 ```
 
@@ -627,7 +627,7 @@ mybatis-config.xml (同时有的话，优先走外面properties)
 
 ```xml
 <typeAliases>
-    <package name="com.sicilly.pojo.User"></package>
+    <package name="com.User"></package>
 </typeAliases>
 ```
 
@@ -674,7 +674,7 @@ public class User {
 
 ```xml
 <mappers>
-    <mapper class="com.sicilly.dao.UserMapper" />
+    <mapper class="com.UserMapper" />
 </mappers>
 ```
 
@@ -714,3 +714,85 @@ public class User {
 - 连接到连接池的请求！
 -  SqlSession 的实例不是线程安全的，因此是不能被共享的 ，所以它的最佳的作用域是请求或方法作用域。 
 - 用完之后赶紧关闭，否则资源被占用。
+
+## 结果集映射(mybatis-03)
+
+### 1. 问题
+
+**属性名和字段名不一致的问题**
+
+数据库中的字段---- pwd
+
+实体类字段-----password
+
+User
+
+```java
+package com.hou.pogo;
+
+public class User {
+
+    private int id;
+    private String name;
+    private String password;
+}
+```
+
+运行结果：
+
+> User{id=2, name='wang', password='null'}
+
+
+
+### 2. 解决方法
+
+核心配置文件
+
+- 起别名
+
+```xml
+<select id="getUserById" resultType="User"
+    parameterType="int">
+        select id,name,pwd as password from mybatis.user where id = #{id}
+</select>
+```
+
+- resultMap 结果集映射
+
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sicilly.dao.UserMapper">
+
+	<!-- resultMap结果集映射-->
+    <resultMap id="UserMap" type="User">
+        
+		<!-- column数据库中的字段，property实体类中的属性-->
+        <result column="id" property="id"></result>
+        <result column="name" property="name"></result>
+        <result column="pwd" property="password"></result>
+        
+    </resultMap>
+    
+	<!-- 使用resultMap属性-->
+    <select id="getUserList" resultMap="UserMap">
+        select * from mybatis.user
+    </select>
+
+</mapper>
+```
+
+- `resultMap` 元素是 MyBatis 中最重要最强大的元素。 
+
+- ResultMap 的设计思想是，对简单的语句做到零配置，对于复杂一点的语句，只需要描述语句之间的关系就行了。 
+
+```xml
+<resultMap id="UserMap" type="User">
+    <!--colunm 数据库中的字段，property实体中的属性-->
+    <!--<result column="id" property="id"></result>-->
+    <!--<result column="name" property="name"></result>-->
+    <result column="pwd" property="password"></result>
+</resultMap>
+```
