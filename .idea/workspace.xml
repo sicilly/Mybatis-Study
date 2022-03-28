@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a124f5d9-0134-4c55-b021-b9a54e0fe494" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/97e3b3a0-596c-4f25-9254-92c731ef328c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/97e3b3a0-596c-4f25-9254-92c731ef328c.xml" afterDir="false" />
+    <list default="true" id="a124f5d9-0134-4c55-b021-b9a54e0fe494" name="Changes" comment="新增readme文件，对第一个mybatis程序进行总结">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-01/src/main/java/com/sicilly/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-01/src/main/java/com/sicilly/dao/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mybatis-01/src/main/java/com/sicilly/dao/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-01/src/main/java/com/sicilly/dao/UserMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mybatis-01/src/main/java/com/sicilly/dao/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-01/src/main/java/com/sicilly/dao/UserMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mybatis-01/src/test/java/com/sicilly/dao/UserDaoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-01/src/test/java/com/sicilly/dao/UserDaoTest.java" afterDir="false" />
     </list>
@@ -57,7 +54,55 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="File.Encoding" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.UserDaoTest.deleteUser">
+    <configuration name="UserDaoTest.AddUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mybatis-01" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.sicilly.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.sicilly.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.sicilly.dao.UserDaoTest" />
+      <option name="METHOD_NAME" value="AddUser" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserDaoTest.deleteUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mybatis-01" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.sicilly.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.sicilly.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.sicilly.dao.UserDaoTest" />
+      <option name="METHOD_NAME" value="deleteUser" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserDaoTest.getUserById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mybatis-01" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.sicilly.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.sicilly.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.sicilly.dao.UserDaoTest" />
+      <option name="METHOD_NAME" value="getUserById" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="UserDaoTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="mybatis-01" />
       <extension name="coverage">
@@ -74,8 +119,28 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="UserDaoTest.updateUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mybatis-01" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.sicilly.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.sicilly.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.sicilly.dao.UserDaoTest" />
+      <option name="METHOD_NAME" value="updateUser" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.UserDaoTest.deleteUser" />
+        <item itemvalue="JUnit.UserDaoTest.updateUser" />
+        <item itemvalue="JUnit.UserDaoTest.AddUser" />
+        <item itemvalue="JUnit.UserDaoTest.getUserById" />
         <item itemvalue="JUnit.UserDaoTest.test" />
       </list>
     </recent_temporary>
@@ -89,8 +154,17 @@
       <option name="presentableId" value="Default" />
       <updated>1648185833655</updated>
       <workItem from="1648185835116" duration="9088000" />
-      <workItem from="1648263303473" duration="3716000" />
+      <workItem from="1648263303473" duration="5030000" />
+      <workItem from="1648445715818" duration="6229000" />
     </task>
+    <task id="LOCAL-00001" summary="新增readme文件，对第一个mybatis程序进行总结">
+      <created>1648268234854</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1648268234854</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -106,5 +180,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="新增readme文件，对第一个mybatis程序进行总结" />
+    <option name="LAST_COMMIT_MESSAGE" value="新增readme文件，对第一个mybatis程序进行总结" />
   </component>
 </project>
