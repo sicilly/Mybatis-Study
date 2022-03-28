@@ -1,5 +1,5 @@
 # Mybatis-Study
-## mybatis-01
+## 增删改查(mybatis-01)
 ### 0. 准备工作
 创建mybatis数据库,创建user表，增加id,name,pwd三个字段，增加一些数据
 
@@ -190,7 +190,7 @@ com/sicilly/dao/UserMapper.xml  绑定接口，在这里写sql语句
 </mapper>
 ```
 
-### 增删查改实现
+### 2. 增删查改实现
 
 #### 根据id查
 
@@ -357,7 +357,7 @@ public class UserDaoTest {
 
 UserMapper.java
 
-```
+```java
 package com.sicilly.dao;
 
 import com.sicilly.pojo.User;
@@ -465,7 +465,7 @@ public class UserDaoTest {
 
 ```
 
-### 用Map传递参数
+### 3. 用Map传递参数
 
 对象传递参数，直接在sql中取对象的属性即可 `parameterType=“Object”`
 
@@ -475,14 +475,14 @@ public class UserDaoTest {
 
 UserMapper.java
 
-```
+```java
     // 使用map来传递参数
     int addUser2(Map<String,Object> map);
 ```
 
 UserMapper.xml
 
-```
+```xml
     <insert id="addUser2" parameterType="map">
         insert into mybatis.user (id,name,pwd)
         values (#{id1}, #{name1}, #{pwd1});
@@ -491,7 +491,7 @@ UserMapper.xml
 
 UserDapTest.java
 
-```
+```java
     @Test
     public void AddUser2(){
         // 第一步：获得sqlSession对象
@@ -520,3 +520,197 @@ UserDapTest.java
 
 ```
 
+## 配置解析(mybatis-02)
+
+### 1. 核心配置文件
+
+- mybatis-config.xml
+
+```xml
+configuration（配置）
+    properties（属性）
+    settings（设置）
+    typeAliases（类型别名）
+    typeHandlers（类型处理器）
+    objectFactory（对象工厂）
+    plugins（插件）
+        environments（环境配置）
+            environment（环境变量）
+            transactionManager（事务管理器）
+    dataSource（数据源）
+    databaseIdProvider（数据库厂商标识）
+    mappers（映射器）
+```
+
+
+
+### 2. 环境配置（environments）
+
+ MyBatis 可以配置成适应多种环境 
+
+ **不过要记住：尽管可以配置多个环境，但每个 SqlSessionFactory 实例只能选择一种环境。** 
+
+Mybatis 默认的事务管理器是JDBC，连接池：POOLED
+
+
+
+### 3. 属性
+
+我们可以通过properties属性来引用配置文件
+
+这些属性可以在外部进行配置，并可以进行动态替换。你既可以在典型的 Java 属性文件中配置这些属性，也可以在 properties 元素的子元素中设置。 （db.properties）
+
+编写一个配置文件
+
+db.properties
+
+```properties
+driver=com.mysql.jdbc.Driver
+url=jdbc:mysql://localhost:3306/mybatis?userSSL=true&useUnicode=true&characterEncoding=UTF-8
+username=root
+password=
+```
+
+在核心配置文件中引入
+
+mybatis-config.xml (同时有的话，优先走外面properties)
+
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+    <!--引入外部配置文件-->
+    <!--<properties resource="db.properties"/>-->
+
+    <properties resource="db.properties">
+        <property name="username" value="root"></property>
+        <property name="password" value="hdk123"></property>
+    </properties>
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!--每一个mapper.xml都需要注册-->
+    <mappers>
+        <mapper resource="com/sicilly/dao/UserMapper.xml"/>
+    </mappers>
+
+</configuration>
+```
+
+
+
+### 4. 类型别名（typeAliases）
+
+ 类型别名可为 Java 类型设置一个缩写名字。 
+
+```xml
+<typeAliases>
+    <typeAlias type="com.sicilly.pojo.User" alias="User"></typeAlias>
+</typeAliases>
+```
+
+扫描实体类的包，默认别名就为这个类的类名首字母小写
+
+```xml
+<typeAliases>
+    <package name="com.sicilly.pojo.User"></package>
+</typeAliases>
+```
+
+在实体类，比较少的时候使用第一种，实体类多使用第二种。
+
+第一种可以自定义，第二则不行，但是 若有注解，则别名为其注解值 。
+
+```java
+@Alias("hello")
+public class User {
+}
+```
+
+
+
+### 5. 设置
+
+| 设置名             | 描述                                                         | 有效值                                                       | 默认值 |
+| :----------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----- |
+| cacheEnabled       | 全局性地开启或关闭所有映射器配置文件中已配置的任何缓存。     | true \| false                                                | true   |
+| lazyLoadingEnabled | 延迟加载的全局开关。当开启时，所有关联对象都会延迟加载。 特定关联关系中可通过设置 `fetchType` 属性来覆盖该项的开关状态。 | true \| false                                                | false  |
+| logImpl            | 指定 MyBatis 所用日志的具体实现，未指定时将自动查找。        | SLF4J \| LOG4J \| LOG4J2 \| JDK_LOGGING \| COMMONS_LOGGING \| STDOUT_LOGGING \| NO_LOGGING | 未设置 |
+
+### 6. 其他
+
+- [typeHandlers（类型处理器）](https://mybatis.org/mybatis-3/zh/configuration.html#typeHandlers)
+- [objectFactory（对象工厂）](https://mybatis.org/mybatis-3/zh/configuration.html#objectFactory)
+- [plugins（插件）](https://mybatis.org/mybatis-3/zh/configuration.html#plugins)
+  - mybatis-generator-core
+  - mybatis-plus
+  - 通用mapper
+
+### 7. 映射器
+
+方式一: [推荐使用]
+
+```xml
+<mappers>
+    <mapper resource="com/sicilly/dao/UserMapper.xml"/>
+</mappers>
+```
+
+方式二：
+
+```xml
+<mappers>
+    <mapper class="com.sicilly.dao.UserMapper" />
+</mappers>
+```
+
+- 接口和它的Mapper必须同名
+- 接口和他的Mapper必须在同一包下
+
+方式三：
+
+```xml
+<mappers>
+    <package name="com.sicilly.dao" />
+</mappers>
+```
+
+- 接口和它的Mapper必须同名
+- 接口和他的Mapper必须在同一包下
+
+### 8.生命周期和作用域
+
+作用域和生命周期类别是至关重要的，因为错误的使用会导致非常严重的**并发问题**。
+
+**SqlSessionFactoryBuilder**: 
+
+-  一旦创建了 SqlSessionFactory，就不再需要它了 。
+- 局部变量
+
+ **SqlSessionFactory**：
+
+-  就是数据库连接池。
+-  一旦被创建就应该在应用的运行期间一直存在 ，**没有任何理由丢弃它或重新创建另一个实例 。** 多次重建 SqlSessionFactory 被视为一种代码“坏习惯”。 
+-  因此 SqlSessionFactory 的最佳作用域是应用作用域。 
+-  最简单的就是使用单例模式或者静态单例模式。 
+
+ **SqlSession**：
+
+- 每个线程都应该有它自己的 SqlSession 实例。 
+- 连接到连接池的请求！
+-  SqlSession 的实例不是线程安全的，因此是不能被共享的 ，所以它的最佳的作用域是请求或方法作用域。 
+- 用完之后赶紧关闭，否则资源被占用。
