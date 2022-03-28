@@ -20,6 +20,11 @@
     <insert id="addUser" parameterType="com.sicilly.pojo.User">
         insert into mybatis.user (id,name,pwd) values(#{id},#{name},#{pwd})
     </insert>
+    
+    <insert id="addUser2" parameterType="map">
+        insert into mybatis.user (id,name,pwd)
+        values (#{id1}, #{name1}, #{pwd1});
+    </insert>
 
     <update id="updateUser" parameterType="com.sicilly.pojo.User">
         update mybatis.user

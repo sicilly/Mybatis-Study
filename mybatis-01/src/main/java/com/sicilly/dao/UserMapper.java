@@ -3,6 +3,7 @@ package com.sicilly.dao;
 import com.sicilly.pojo.User;
 
 import java.util.List;
+import java.util.Map;
 
 public interface UserMapper {
     // 查询全部用户
@@ -13,6 +14,9 @@ public interface UserMapper {
 
     // 新增用户 传入的是一个user对象
     int addUser(User user);
+
+    // 使用map来传递参数
+    int addUser2(Map<String,Object> map);
 
     // 修改用户
     int updateUser(User user);

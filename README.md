@@ -465,3 +465,58 @@ public class UserDaoTest {
 
 ```
 
+### 用Map传递参数
+
+对象传递参数，直接在sql中取对象的属性即可 `parameterType=“Object”`
+
+只有一个基本类型参数的情况下，可以直接在sql中取到
+
+多个参数可以用map或者注解（后面讲）传递参数，直接在sql中取出key即可 `parameterType=“map”`
+
+UserMapper.java
+
+```
+    // 使用map来传递参数
+    int addUser2(Map<String,Object> map);
+```
+
+UserMapper.xml
+
+```
+    <insert id="addUser2" parameterType="map">
+        insert into mybatis.user (id,name,pwd)
+        values (#{id1}, #{name1}, #{pwd1});
+    </insert>
+```
+
+UserDapTest.java
+
+```
+    @Test
+    public void AddUser2(){
+        // 第一步：获得sqlSession对象
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+
+        try {
+            // 方式一：getMapper
+            // 先获得userMapper接口里的对象
+            UserMapper userMapper=sqlSession.getMapper(UserMapper.class);
+            // 准备一个万能的map
+            Map<String,Object>map=new HashMap<String,Object>();
+            map.put("id1",10);
+            map.put("name1","dd");
+            map.put("pwd1","123");
+            // 把map放进userMapper
+            userMapper.addUser2(map);
+
+            // 提交事务
+            sqlSession.commit();
+        }finally {
+            // 关闭sqlSession
+            sqlSession.close();
+        }
+
+    }
+
+```
+
