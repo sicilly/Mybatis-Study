@@ -764,7 +764,7 @@ public class User {
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.sicilly.dao.UserMapper">
+<mapper namespace="com.UserMapper">
 
 	<!-- resultMap结果集映射-->
     <resultMap id="UserMap" type="User">
@@ -795,4 +795,156 @@ public class User {
     <!--<result column="name" property="name"></result>-->
     <result column="pwd" property="password"></result>
 </resultMap>
+```
+
+## 日志(mybatis-04)
+
+### 1. 日志工厂
+
+如果一个数据库操作出现了异常，我们需要排错。日志就是最好的助手。
+
+曾经：sout，debug
+
+现在：日志工厂
+
+ logImpl 
+
+- SLF4J 
+- LOG4J [掌握]
+- LOG4J2 
+- JDK_LOGGING 
+- COMMONS_LOGGING 
+- STDOUT_LOGGING [掌握]
+- NO_LOGGING 
+
+具体使用哪一个，在设置中设定
+
+STDOUT_LOGGING 标志日志输出
+
+mybatis-config.xml中
+
+```xml
+<settings>
+    <setting name="logImpl" value="STDOUT_LOGGING"/>
+</settings>
+```
+
+控制台输出：
+
+```
+Opening JDBC Connection
+Tue Mar 29 13:53:05 CST 2022 WARN: Establishing SSL connection without server's identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn't set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to 'false'. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
+Created connection 2067925017.
+Setting autocommit to false on JDBC Connection [com.mysql.jdbc.JDBC4Connection@7b420819]
+==>  Preparing: select * from mybatis.user 
+==> Parameters: 
+<==    Columns: id, name, pwd
+<==        Row: 1, bobo, 123456
+<==        Row: 2, 张三, 123456
+<==        Row: 3, 李四, 123456
+<==        Row: 10, dd, 123
+<==      Total: 4
+User{id=1, name='bobo', password='123456'}
+User{id=2, name='张三', password='123456'}
+User{id=3, name='李四', password='123456'}
+User{id=10, name='dd', password='123'}
+Resetting autocommit to true on JDBC Connection [com.mysql.jdbc.JDBC4Connection@7b420819]
+Closing JDBC Connection [com.mysql.jdbc.JDBC4Connection@7b420819]
+Returned connection 2067925017 to pool.
+```
+
+### 2. Log4j
+
+1. 先导包
+
+pom.xml下
+
+```xml
+<dependencies>
+    <!-- https://mvnrepository.com/artifact/log4j/log4j -->
+    <dependency>
+        <groupId>log4j</groupId>
+        <artifactId>log4j</artifactId>
+        <version>1.2.17</version>
+    </dependency>
+</dependencies>
+```
+2. 新建log4j.properties文件
+
+```properties
+### set log levels ###
+log4j.rootLogger = DEBUG,console,file
+
+### 输出到控制台 ###
+log4j.appender.console = org.apache.log4j.ConsoleAppender
+log4j.appender.console.Target = System.out
+log4j.appender.console.Threshold = DEBUG
+log4j.appender.console.layout = org.apache.log4j.PatternLayout
+log4j.appender.console.layout.ConversionPattern = [%c]-%m%n
+
+### 输出到日志文件 ###
+log4j.appender.file=org.apache.log4j.RollingFileAppender
+log4j.appender.file.File=./log/sicilly.log
+log4j.appender.file.MaxFileSize=10mb 
+log4j.appender.file.Threshold=DEBUG 
+log4j.appender.file.layout=org.apache.log4j.PatternLayout
+log4j.appender.file.layout.ConversionPattern=[%p][%d{yy-MM-dd}][%c]%m%n
+
+# 日志输出级别
+log4j.logger.org.mybatis=DEBUG
+log4j.logger.java.sql=DEBUG
+log4j.logger.java.sql.Statement=DEBUG
+log4j.logger.java.sql.ResultSet=DEBUG
+log4j.logger.java.sql.PreparedStatement=DEBUG
+```
+
+3. 配置实现
+
+```xml
+<settings>
+    <setting name="logImpl" value="LOG4J"/>
+</settings>
+```
+
+4. Log4j使用
+
+```java
+package com.sicilly.dao;
+
+import com.hou.pojo.User;
+import com.hou.utils.MybatisUtils;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.log4j.Logger;
+import org.junit.Test;
+
+public class UserDaoTest {
+
+    static Logger logger = Logger.getLogger(UserDaoTest.class);
+
+    @Test
+    public void test(){
+        // 获得sqlsession对象
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        try{
+            // 1.执行 getmapper
+            UserMapper userDao = sqlSession.getMapper(UserMapper.class);
+            logger.info("测试");
+            User user = userDao.getUserById(2);
+            System.out.println(user);
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally{
+            //关闭
+            sqlSession.close();
+        }
+    }
+
+    @Test
+    public void testLog4j(){
+        logger.info("info:进入了testlog4j");
+        logger.debug("debug:进入了testlog4j");
+        logger.error("error:进入了testlog4j");
+    }
+
+}
 ```

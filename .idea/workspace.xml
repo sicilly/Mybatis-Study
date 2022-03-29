@@ -4,18 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a124f5d9-0134-4c55-b021-b9a54e0fe494" name="Changes" comment="配置解析">
-      <change afterPath="$PROJECT_DIR$/mybatis-03/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mybatis-03/src/main/java/com/sicilly/dao/UserMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mybatis-03/src/main/java/com/sicilly/dao/UserMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mybatis-03/src/main/java/com/sicilly/pojo/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mybatis-03/src/main/java/com/sicilly/utils/MybatisUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mybatis-03/src/main/resources/db.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mybatis-03/src/main/resources/mybatis-config.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mybatis-03/src/test/java/com/sicilly/dao/UserDaoTest.java" afterDir="false" />
+    <list default="true" id="a124f5d9-0134-4c55-b021-b9a54e0fe494" name="Changes" comment="属性名和字段名不一致的问题">
+      <change afterPath="$PROJECT_DIR$/mybatis-04/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mybatis-04/src/main/java/com/sicilly/dao/UserMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mybatis-04/src/main/java/com/sicilly/dao/UserMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mybatis-04/src/main/java/com/sicilly/pojo/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mybatis-04/src/main/java/com/sicilly/utils/MybatisUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mybatis-04/src/main/resources/db.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mybatis-04/src/main/resources/log4j.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mybatis-04/src/main/resources/mybatis-config.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mybatis-04/src/test/java/com/sicilly/dao/UserDaoTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-02/src/main/resources/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-02/src/main/resources/mybatis-config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,16 +60,19 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/mybatis-03/src/main/java/com/sicilly/dao" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/mybatis-04/src/main/java" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="File.Encoding" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\code\SSM\Mybatis-Study\mybatis-04\src\main\java" />
+      <recent name="D:\code\SSM\Mybatis-Study\mybatis-04\src\main\resources" />
+      <recent name="D:\code\SSM\Mybatis-Study" />
       <recent name="D:\code\SSM\Mybatis-Study\mybatis-03\src\main\java\com\sicilly\dao" />
       <recent name="D:\code\SSM\Mybatis-Study\mybatis-03\src\main\resources" />
-      <recent name="D:\code\SSM\Mybatis-Study\mybatis-03\src\main\java" />
-      <recent name="D:\code\SSM\Mybatis-Study\mybatis-02\src\main\java\com\sicilly\dao" />
-      <recent name="D:\code\SSM\Mybatis-Study\mybatis-02\src\main\resources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.sicilly.dao" />
@@ -75,9 +81,9 @@
       <recent name="com.sicilly.utils" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.UserDaoTest.test (1)">
-    <configuration name="UserDaoTest.AddUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="mybatis-01" />
+  <component name="RunManager" selected="JUnit.UserDaoTest">
+    <configuration name="UserDaoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mybatis-04" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.sicilly.dao.*" />
@@ -86,8 +92,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.sicilly.dao" />
       <option name="MAIN_CLASS_NAME" value="com.sicilly.dao.UserDaoTest" />
-      <option name="METHOD_NAME" value="AddUser" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -103,22 +108,6 @@
       <option name="PACKAGE_NAME" value="com.sicilly.dao" />
       <option name="MAIN_CLASS_NAME" value="com.sicilly.dao.UserDaoTest" />
       <option name="METHOD_NAME" value="deleteUser" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserDaoTest.getUserById (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="mybatis-01" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.sicilly.dao.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.sicilly.dao" />
-      <option name="MAIN_CLASS_NAME" value="com.sicilly.dao.UserDaoTest" />
-      <option name="METHOD_NAME" value="getUserById" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -140,8 +129,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserDaoTest.updateUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="mybatis-01" />
+    <configuration name="UserDaoTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mybatis-04" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.sicilly.dao.*" />
@@ -150,7 +139,23 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.sicilly.dao" />
       <option name="MAIN_CLASS_NAME" value="com.sicilly.dao.UserDaoTest" />
-      <option name="METHOD_NAME" value="updateUser" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserDaoTest.testLog4j" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mybatis-04" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.sicilly.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.sicilly.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.sicilly.dao.UserDaoTest" />
+      <option name="METHOD_NAME" value="testLog4j" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -158,11 +163,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.UserDaoTest" />
+        <item itemvalue="JUnit.UserDaoTest.test" />
+        <item itemvalue="JUnit.UserDaoTest.testLog4j" />
         <item itemvalue="JUnit.UserDaoTest.test (1)" />
         <item itemvalue="JUnit.UserDaoTest.deleteUser" />
-        <item itemvalue="JUnit.UserDaoTest.updateUser" />
-        <item itemvalue="JUnit.UserDaoTest.AddUser" />
-        <item itemvalue="JUnit.UserDaoTest.getUserById (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -176,7 +181,8 @@
       <updated>1648185833655</updated>
       <workItem from="1648185835116" duration="9088000" />
       <workItem from="1648263303473" duration="5030000" />
-      <workItem from="1648445715818" duration="19076000" />
+      <workItem from="1648445715818" duration="19203000" />
+      <workItem from="1648530027317" duration="5576000" />
     </task>
     <task id="LOCAL-00001" summary="新增readme文件，对第一个mybatis程序进行总结">
       <created>1648268234854</created>
@@ -206,7 +212,14 @@
       <option name="project" value="LOCAL" />
       <updated>1648481349017</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="属性名和字段名不一致的问题">
+      <created>1648486077674</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1648486077674</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -228,6 +241,7 @@
     <MESSAGE value="增删改查实现" />
     <MESSAGE value="用map传递多个参数" />
     <MESSAGE value="配置解析" />
-    <option name="LAST_COMMIT_MESSAGE" value="配置解析" />
+    <MESSAGE value="属性名和字段名不一致的问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="属性名和字段名不一致的问题" />
   </component>
 </project>
