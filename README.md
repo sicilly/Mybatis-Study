@@ -1062,5 +1062,312 @@ public void getUserByRow(){
 
 [pageHelper]: https://pagehelper.github.io/
 
-## 使用注解开发
 
+
+## 使用注解开发(mybatis-05)
+
+1. 删除 UserMapper.xml
+
+2. UserMapper
+
+   注解在接口上实现
+
+   ```java
+   package com.sicilly.dao;
+   
+   import com.sicilly.pojo.User;
+   import org.apache.ibatis.annotations.Select;
+   
+   import java.util.List;
+   
+   public interface UserMapper {
+   
+       @Select("select * from user")
+       List<User> getUsers();
+   }
+   ```
+
+3. 核心配置 mybatis-config.xml
+
+   ```xml
+   <?xml version="1.0" encoding="UTF-8" ?>
+   <!DOCTYPE configuration
+           PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+           "http://mybatis.org/dtd/mybatis-3-config.dtd">
+   
+   <configuration>
+   
+       <!--引入外部配置文件-->
+       <properties resource="db.properties"/>
+   
+       <!--可以给实体类起别名-->
+       <typeAliases>
+           <typeAlias type="com.sicilly.pojo.User" alias="User"></typeAlias>
+       </typeAliases>
+   
+       <environments default="development">
+           <environment id="development">
+               <transactionManager type="JDBC"/>
+               <dataSource type="POOLED">
+                   <property name="driver" value="${driver}"/>
+                   <property name="url" value="${url}"/>
+                   <property name="username" value="${username}"/>
+                   <property name="password" value="${password}"/>
+               </dataSource>
+           </environment>
+       </environments>
+   
+       <!--绑定接口-->
+       <mappers>
+           <mapper class="com.sicilly.dao.UserMapper"></mapper>
+       </mappers>
+   </configuration>
+   ```
+
+   本质：反射机制
+
+   底层：动态代理！
+   
+   
+
+### 1. Mybatis详细执行流程
+
+1. Resource获取全局配置文件
+
+   ```java
+   String resource = "mybatis-config.xml";
+   InputStream inputStream = Resources.getResourceAsStream(resource);
+   ```
+
+2. 实例化SqlsessionFactoryBuilder
+
+   ```java
+   sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+   ```
+
+3. 解析配置文件流XMLConfigBuilder
+
+![image-20220329192451470](D:\code\SSM\Mybatis-Study\images\image-20220329192451470.png)
+
+4. Configration所有的配置信息
+
+   ![image-20220329193436690](D:\code\SSM\Mybatis-Study\README\images\image-20220329193436690.png)
+
+5. SqlSessionFactory实例化
+
+   ```
+   sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+   ```
+
+6. trasactional事务管理
+
+   ![image-20220329193709194](D:\code\SSM\Mybatis-Study\README\images\image-20220329193709194.png)
+
+7. 创建executor执行器
+
+   ![image-20220329193729668](D:\code\SSM\Mybatis-Study\README\images\image-20220329193729668.png)
+
+8. 创建SqlSession
+
+   ```
+   SqlSession sqlSession = MybatisUtils.getSqlSession();
+   ```
+
+   
+
+9. 实现CRUD
+
+   ```
+   UserMapper userMaper = sqlSession.getMapper(UserMapper.class);
+   List<User> users= userMaper.getUsers();
+   ```
+
+10. 查看是否执行成功
+
+    
+
+11. 提交事务
+
+    
+
+12. 关闭
+
+```
+sqlSession.close();
+```
+
+### 2. 注解CRUD
+
+```java
+package com.sicilly.dao;
+
+import com.sicilly.pojo.User;
+import org.apache.ibatis.annotations.*;
+
+import java.util.List;
+
+public interface UserMapper {
+
+    @Select("select * from user")
+    List<User> getUsers();
+
+    //方法存在多个参数，所有的参数必须加@Param
+    @Select("select * from user where id = #{id}")
+    User getUserById(@Param("id") int id);
+
+    @Insert("insert into user (id, name, pwd) values" +
+            "(#{id},#{name},#{password})")
+    int addUser(User user);
+
+    @Update("update user set name=#{name}, pwd=#{password} " +
+            "where id=#{id}")
+    int updateUser(User user);
+
+    @Delete("delete from user where id=#{id}")
+    int deleteUser(@Param("id") int id);
+
+}
+```
+
+MybatisUtile
+
+```java
+package com.sicilly.utils;
+
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+import java.io.IOException;
+import java.io.InputStream;
+
+//sqlSessionFactory --> sqlSession
+public class MybatisUtils {
+
+    private static SqlSessionFactory sqlSessionFactory;
+
+    static {
+        try {
+            //使用mybatis第一步：获取sqlSessionFactory对象
+            String resource = "mybatis-config.xml";
+            InputStream inputStream = Resources.getResourceAsStream(resource);
+            sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static SqlSession getSqlSession(){
+        return sqlSessionFactory.openSession(true);
+    }
+
+}
+```
+
+Test
+
+```java
+package com.sicilly.dao;
+
+import com.sicilly.pojo.User;
+import com.sicilly.utils.MybatisUtils;
+import org.apache.ibatis.session.SqlSession;
+import org.junit.Test;
+
+import java.util.List;
+
+public class UserDaoTest {
+
+    @Test
+    public void test(){
+        // 获得sqlsession对象
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        try{
+            // 1.执行 getmapper
+            UserMapper userDao = sqlSession.getMapper(UserMapper.class);
+            List<User> userList = userDao.getUsers();
+            for (User user : userList) {
+                System.out.println(user);
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally{
+            //关闭
+            sqlSession.close();
+        }
+    }
+
+    @Test
+    public void getuserById(){
+        // 获得sqlsession对象
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        try{
+            // 1.执行 getmapper
+            UserMapper userDao = sqlSession.getMapper(UserMapper.class);
+            User user = userDao.getUserById(1);
+
+            System.out.println(user);
+
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally{
+            //关闭
+            sqlSession.close();
+        }
+    }
+
+    @Test
+    public void addUser(){
+        // 获得sqlsession对象
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        try{
+            // 1.执行 getmapper
+            UserMapper userDao = sqlSession.getMapper(UserMapper.class);
+            userDao.addUser(new User(6, "kun","123"));
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally{
+            //关闭
+            sqlSession.close();
+        }
+    }
+
+    @Test
+    public void updateUser(){
+        // 获得sqlsession对象
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        try{
+            // 1.执行 getmapper
+            UserMapper userDao = sqlSession.getMapper(UserMapper.class);
+            userDao.updateUser(new User(6, "fang","123"));
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally{
+            //关闭
+            sqlSession.close();
+        }
+    }
+
+    @Test
+    public void deleteUser(){
+        // 获得sqlsession对象
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        try{
+            // 1.执行 getmapper
+            UserMapper userDao = sqlSession.getMapper(UserMapper.class);
+            userDao.deleteUser(6);
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally{
+            //关闭
+            sqlSession.close();
+        }
+    }
+}
+```
