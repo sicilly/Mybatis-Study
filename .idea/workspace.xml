@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a124f5d9-0134-4c55-b021-b9a54e0fe494" name="Changes" comment="注解CURD">
+    <list default="true" id="a124f5d9-0134-4c55-b021-b9a54e0fe494" name="Changes" comment="readme图片">
+      <change afterPath="$PROJECT_DIR$/images/image-20220329192451470.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/image-20220329193436690.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/image-20220329193709194.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/image-20220329193729668.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-05/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-05/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-05/src/main/java/com/sicilly/pojo/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-05/src/main/java/com/sicilly/pojo/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,7 +178,8 @@
       <workItem from="1648185835116" duration="9088000" />
       <workItem from="1648263303473" duration="5030000" />
       <workItem from="1648445715818" duration="19203000" />
-      <workItem from="1648530027317" duration="15159000" />
+      <workItem from="1648530027317" duration="15491000" />
+      <workItem from="1648564208810" duration="559000" />
     </task>
     <task id="LOCAL-00001" summary="新增readme文件，对第一个mybatis程序进行总结">
       <created>1648268234854</created>
@@ -240,7 +244,21 @@
       <option name="project" value="LOCAL" />
       <updated>1648556507147</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Lombok">
+      <created>1648563605556</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1648563605556</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Lombok">
+      <created>1648563616726</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1648563616726</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -267,6 +285,8 @@
     <MESSAGE value="limit分页" />
     <MESSAGE value="使用注解开发，mybatis的执行流程" />
     <MESSAGE value="注解CURD" />
-    <option name="LAST_COMMIT_MESSAGE" value="注解CURD" />
+    <MESSAGE value="Lombok" />
+    <MESSAGE value="readme图片" />
+    <option name="LAST_COMMIT_MESSAGE" value="readme图片" />
   </component>
 </project>
