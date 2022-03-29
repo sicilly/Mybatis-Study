@@ -1147,11 +1147,11 @@ public void getUserByRow(){
 
 3. 解析配置文件流XMLConfigBuilder
 
-![image-20220329192451470](images\image-20220329192451470.png)
+![image-20220329192451470](images/image-20220329192451470.png)
 
 4. Configration所有的配置信息
 
-   ![image-20220329193436690](images\image-20220329193436690.png)
+   ![image-20220329193436690](images/image-20220329193436690.png)
 
 5. SqlSessionFactory实例化
 
@@ -1161,11 +1161,11 @@ public void getUserByRow(){
 
 6. trasactional事务管理
 
-   ![image-20220329193709194](images\image-20220329193709194.png)
+   ![image-20220329193709194](images/image-20220329193709194.png)
 
 7. 创建executor执行器
 
-   ![image-20220329193729668](images\image-20220329193729668.png)
+   ![image-20220329193729668](images/image-20220329193729668.png)
 
 8. 创建SqlSession
 
