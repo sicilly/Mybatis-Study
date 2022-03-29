@@ -4,21 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a124f5d9-0134-4c55-b021-b9a54e0fe494" name="Changes" comment="属性名和字段名不一致的问题">
-      <change afterPath="$PROJECT_DIR$/mybatis-04/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mybatis-04/src/main/java/com/sicilly/dao/UserMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mybatis-04/src/main/java/com/sicilly/dao/UserMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mybatis-04/src/main/java/com/sicilly/pojo/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mybatis-04/src/main/java/com/sicilly/utils/MybatisUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mybatis-04/src/main/resources/db.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mybatis-04/src/main/resources/log4j.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mybatis-04/src/main/resources/mybatis-config.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mybatis-04/src/test/java/com/sicilly/dao/UserDaoTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+    <list default="true" id="a124f5d9-0134-4c55-b021-b9a54e0fe494" name="Changes" comment="limit分页">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mybatis-04/src/main/java/com/sicilly/dao/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-04/src/main/java/com/sicilly/dao/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mybatis-04/src/main/java/com/sicilly/dao/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-04/src/main/java/com/sicilly/dao/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mybatis-04/src/test/java/com/sicilly/dao/UserDaoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-04/src/test/java/com/sicilly/dao/UserDaoTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +72,7 @@
       <recent name="com.sicilly.utils" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.UserDaoTest">
+  <component name="RunManager" selected="JUnit.UserDaoTest.getByLimit">
     <configuration name="UserDaoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="mybatis-04" />
       <extension name="coverage">
@@ -97,8 +88,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserDaoTest.deleteUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="mybatis-01" />
+    <configuration name="UserDaoTest.getByLimit" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mybatis-04" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.sicilly.dao.*" />
@@ -107,7 +98,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.sicilly.dao" />
       <option name="MAIN_CLASS_NAME" value="com.sicilly.dao.UserDaoTest" />
-      <option name="METHOD_NAME" value="deleteUser" />
+      <option name="METHOD_NAME" value="getByLimit" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -163,11 +154,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.UserDaoTest.getByLimit" />
         <item itemvalue="JUnit.UserDaoTest" />
         <item itemvalue="JUnit.UserDaoTest.test" />
         <item itemvalue="JUnit.UserDaoTest.testLog4j" />
         <item itemvalue="JUnit.UserDaoTest.test (1)" />
-        <item itemvalue="JUnit.UserDaoTest.deleteUser" />
       </list>
     </recent_temporary>
   </component>
@@ -182,7 +173,7 @@
       <workItem from="1648185835116" duration="9088000" />
       <workItem from="1648263303473" duration="5030000" />
       <workItem from="1648445715818" duration="19203000" />
-      <workItem from="1648530027317" duration="5576000" />
+      <workItem from="1648530027317" duration="7556000" />
     </task>
     <task id="LOCAL-00001" summary="新增readme文件，对第一个mybatis程序进行总结">
       <created>1648268234854</created>
@@ -219,7 +210,14 @@
       <option name="project" value="LOCAL" />
       <updated>1648486077674</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="日志">
+      <created>1648537325967</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1648537325967</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -242,6 +240,8 @@
     <MESSAGE value="用map传递多个参数" />
     <MESSAGE value="配置解析" />
     <MESSAGE value="属性名和字段名不一致的问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="属性名和字段名不一致的问题" />
+    <MESSAGE value="日志" />
+    <MESSAGE value="limit分页" />
+    <option name="LAST_COMMIT_MESSAGE" value="limit分页" />
   </component>
 </project>

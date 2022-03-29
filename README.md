@@ -728,7 +728,7 @@ public class User {
 User
 
 ```java
-package com.hou.pogo;
+package com.sicilly.pogo;
 
 public class User {
 
@@ -911,8 +911,8 @@ log4j.logger.java.sql.PreparedStatement=DEBUG
 ```java
 package com.sicilly.dao;
 
-import com.hou.pojo.User;
-import com.hou.utils.MybatisUtils;
+import com.sicilly.pojo.User;
+import com.sicilly.utils.MybatisUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.log4j.Logger;
 import org.junit.Test;
@@ -948,3 +948,117 @@ public class UserDaoTest {
 
 }
 ```
+
+## 分页(mybatis-04)
+
+### 1. Limit 分页
+
+语法：
+
+```sql
+SELECT * from user limit startIndex,pageSize;
+SELECT * from user limit 0,2;
+```
+
+UserMapper
+
+```java
+package com.sicilly.dao;
+
+import com.sicilly.pojo.User;
+
+import java.util.List;
+import java.util.Map;
+
+public interface UserMapper {
+
+    //根据id查询用户
+    User getUserById(int id);
+
+    List<User> getUserByLimit(Map<String, Integer> map);
+
+}
+
+```
+
+xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace绑定一个对应的mapper接口-->
+<mapper namespace="com.sicilly.dao.UserMapper">
+
+    <select id="getUserById" resultMap="UserMap"
+    parameterType="int">
+        select * from mybatis.user where id = #{id}
+    </select>
+
+    <!--结果集映射-->
+    <resultMap id="UserMap" type="User">
+        <!--colunm 数据库中的字段，property实体中的属性-->
+        <!--<result column="id" property="id"></result>-->
+        <!--<result column="name" property="name"></result>-->
+        <result column="pwd" property="password"></result>
+    </resultMap>
+
+    <select id="getUserByLimit" parameterType="map"
+            resultType="User" resultMap="UserMap">
+      select * from mybatis.user limit #{startIndex},#{pageSize}
+    </select>
+
+</mapper>
+```
+
+test类
+
+```java
+@Test
+public void getByLimit(){
+    SqlSession sqlSession = MybatisUtils.getSqlSession();
+    UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+    Map<String, Integer> map = new HashMap<String, Integer>();
+    map.put("startIndex", 1);
+    map.put("pageSize", 2);
+    List<User> userList = mapper.getUserByLimit(map);
+
+    for(User user:userList){
+        System.out.println(user);
+    }
+
+    sqlSession.close();
+}
+```
+
+
+
+### 2. RowBounds分页
+
+@Test
+
+```java
+@Test
+public void getUserByRow(){
+    SqlSession sqlSession = MybatisUtils.getSqlSession();
+    //RowBounds实现
+    RowBounds rowBounds = new RowBounds(1, 2);
+
+    //通过java代码层面
+    List<User> userList = sqlSession.selectList
+        ("com.sicilly.dao.UserMapper.getUserByRowBounds",
+         null,rowBounds);
+
+    for (User user : userList) {
+        System.out.println(user);
+    }
+
+    sqlSession.close();
+}
+```
+
+### 3. 分页插件
+
+[pageHelper]: https://pagehelper.github.io/
+
