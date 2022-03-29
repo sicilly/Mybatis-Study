@@ -1371,3 +1371,62 @@ public class UserDaoTest {
     }
 }
 ```
+
+### 3. Lombok
+
+在IDEA中安装lombok插件
+
+配置
+
+   ```xml
+   <dependencies>
+       <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+       <dependency>
+           <groupId>org.projectlombok</groupId>
+           <artifactId>lombok</artifactId>
+           <version>1.18.12</version>
+       </dependency>
+   </dependencies>
+   ```
+
+ ```
+   @Getter and @Setter
+   @FieldNameConstants
+   @ToString
+   @EqualsAndHashCode
+   @AllArgsConstructor, @RequiredArgsConstructor and @NoArgsConstructor
+   @Log, @Log4j, @Log4j2, @Slf4j, @XSlf4j, @CommonsLog, @JBossLog, @Flogger, @CustomLog
+   @Data
+   @Builder
+   @SuperBuilder
+   @Singular
+   @Delegate
+   @Value
+   @Accessors
+   @Wither
+   @With
+   @SneakyThrows
+ ```
+
+   @Data: 无参构造，get，set，toString，hashCode
+
+   在实体类上加注解
+
+   ```java
+   package com.sicilly.pojo;
+   
+   import lombok.AllArgsConstructor;
+   import lombok.Data;
+   import lombok.NoArgsConstructor;
+   
+   @Data
+   @AllArgsConstructor
+   @NoArgsConstructor
+   public class User {
+   
+       private int id;
+       private String name;
+       private String password;
+   
+   }
+   ```
