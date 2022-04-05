@@ -5,8 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a124f5d9-0134-4c55-b021-b9a54e0fe494" name="Changes" comment="readme图片">
+      <change afterPath="$PROJECT_DIR$/mybatis-06/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mybatis-06/src/main/java/com/sicilly/dao/StudentMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mybatis-06/src/main/java/com/sicilly/dao/TeacherMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mybatis-06/src/main/java/com/sicilly/pojo/Student.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mybatis-06/src/main/java/com/sicilly/pojo/Teacher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mybatis-06/src/main/java/com/sicilly/utils/MybatisUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mybatis-06/src/main/resources/com/sicilly/dao/StudentMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mybatis-06/src/main/resources/com/sicilly/dao/TeacherMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mybatis-06/src/main/resources/db.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mybatis-06/src/main/resources/mybatis-config.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mybatis-06/src/test/java/MyTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/97e3b3a0-596c-4f25-9254-92c731ef328c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/97e3b3a0-596c-4f25-9254-92c731ef328c.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +61,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/mybatis-05/src/main/resources" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/mybatis-06/src/main/resources" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -56,11 +69,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\code\SSM\Mybatis-Study\mybatis-06\src\main\resources" />
       <recent name="D:\code\SSM\Mybatis-Study\mybatis-05\src\main\resources" />
       <recent name="D:\code\SSM\Mybatis-Study\mybatis-04\src\main\java" />
       <recent name="D:\code\SSM\Mybatis-Study\mybatis-04\src\main\resources" />
       <recent name="D:\code\SSM\Mybatis-Study" />
-      <recent name="D:\code\SSM\Mybatis-Study\mybatis-03\src\main\java\com\sicilly\dao" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\code\SSM\Mybatis-Study\images" />
@@ -72,7 +85,14 @@
       <recent name="dao" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.UserDaoTest.deleteUser">
+  <component name="RunManager" selected="Application.MyTest">
+    <configuration name="MyTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MyTest" />
+      <module name="mybatis-06" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="UserDaoTest.addUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="mybatis-05" />
       <extension name="coverage">
@@ -121,22 +141,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserDaoTest.test (2)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="mybatis-05" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.sicilly.dao.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.sicilly.dao" />
-      <option name="MAIN_CLASS_NAME" value="com.sicilly.dao.UserDaoTest" />
-      <option name="METHOD_NAME" value="test" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="UserDaoTest.updateUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="mybatis-05" />
       <extension name="coverage">
@@ -155,11 +159,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MyTest" />
         <item itemvalue="JUnit.UserDaoTest.deleteUser" />
         <item itemvalue="JUnit.UserDaoTest.updateUser" />
         <item itemvalue="JUnit.UserDaoTest.addUser" />
         <item itemvalue="JUnit.UserDaoTest.getuserById" />
-        <item itemvalue="JUnit.UserDaoTest.test (2)" />
       </list>
     </recent_temporary>
   </component>
@@ -175,7 +179,8 @@
       <workItem from="1648263303473" duration="5030000" />
       <workItem from="1648445715818" duration="19203000" />
       <workItem from="1648530027317" duration="15491000" />
-      <workItem from="1648564208810" duration="1506000" />
+      <workItem from="1648564208810" duration="2194000" />
+      <workItem from="1649134063183" duration="4372000" />
     </task>
     <task id="LOCAL-00001" summary="新增readme文件，对第一个mybatis程序进行总结">
       <created>1648268234854</created>
@@ -261,7 +266,14 @@
       <option name="project" value="LOCAL" />
       <updated>1648564821868</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="readme图片">
+      <created>1648567082732</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1648567082732</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
