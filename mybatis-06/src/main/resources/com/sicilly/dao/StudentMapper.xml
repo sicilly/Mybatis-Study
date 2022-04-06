@@ -4,8 +4,20 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.sicilly.dao.StudentMapper">
+    <!--按照结果嵌套处理-->
+    <select id="getStudent2" resultMap="StudentTeacher2">
+        select s.id sid,s.name sname,t.name tname from student s,teacher t where s.tid=t.id;
+    </select>
+
+    <resultMap id="StudentTeacher2" type="Student">
+        <association property="teacher" javaType="Teacher">
+            <result property="name" column="tname"/>
+        </association>
+    </resultMap>
+
+
     <!--
-    思路：
+    按照查询嵌套处理 思路：
     1. 查询所有学生的信息
     2. 根据查询出来的学生tid，寻找对应的老师
     -->

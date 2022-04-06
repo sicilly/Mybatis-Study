@@ -1580,3 +1580,19 @@ Student(id=5, name=小王, teacher=Teacher(id=1, name=秦老师))
 ```
 
 ### 3. 按照结果嵌套处理
+
+StudentMapper.xml：
+
+```java
+    <!--按照结果嵌套处理-->
+    <select id="getStudent2" resultMap="StudentTeacher2">
+        select s.id sid,s.name sname,t.name tname from student s,teacher t where s.tid=t.id;
+    </select>
+
+    <resultMap id="StudentTeacher2" type="Student">
+        <association property="teacher" javaType="Teacher">
+            <result property="name" column="tname"/>
+        </association>
+    </resultMap>
+```
+
