@@ -1468,3 +1468,115 @@ INSERT INTO `student` (`id`, `name`, `tid`) VALUES ('5', '小王', '1');
 4. 建立Mapper.xml文件
 5. 在核心配置文件中绑定注册mapper接口
 6. 测试查询能否成功
+
+
+
+sql查询所有学生及其对应的老师：
+
+```sql
+select s.id,s.name,t.name from student s,teacher t where s.tid=t.id;
+```
+
+| id   | name | name   |
+| ---- | ---- | ------ |
+| 1    | 小明 | 秦老师 |
+| 2    | 小红 | 秦老师 |
+| 3    | 小张 | 秦老师 |
+
+那在代码中要怎么写？
+
+### 2. 按照查询嵌套处理
+
+StudentMapper.java接口：
+
+```java
+package com.sicilly.dao;
+
+import com.sicilly.pojo.Student;
+
+import java.util.List;
+
+public interface StudentMapper {
+    // 查询所有学生信息，以及对应老师的信息
+    public List<Student> getStudent();
+}
+			
+```
+
+StudentMapper.xml：
+
+```java
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sicilly.dao.StudentMapper">
+    <!--
+    思路：
+    1. 查询所有学生的信息
+    2. 根据查询出来的学生tid，寻找对应的老师
+    -->
+    <select id="getStudent" resultMap="StudentTeacher">
+        select * from student;
+    </select>
+
+    <resultMap id="StudentTeacher" type="Student">
+        <!--复杂的属性需要单独处理，对象：association 集合：collection-->
+        <association property="teacher" column="tid" javaType="Teacher" select="getTeacher"></association>
+    </resultMap>
+
+    <select id="getTeacher" resultType="Teacher">
+        select * from teacher where id=#{id}
+    </select>
+</mapper>
+```
+
+MyTest：
+
+```java
+import com.sicilly.dao.StudentMapper;
+import com.sicilly.dao.TeacherMapper;
+import com.sicilly.pojo.Student;
+import com.sicilly.pojo.Teacher;
+import com.sicilly.utils.MybatisUtils;
+import org.apache.ibatis.session.SqlSession;
+import org.junit.Test;
+
+import java.util.List;
+
+public class MyTest {
+    public static void main(String[] args) {
+        SqlSession sqlSession= MybatisUtils.getSqlSession();
+        TeacherMapper mapper = sqlSession.getMapper(TeacherMapper.class);
+        Teacher teacher = mapper.getTeacher(1);
+        System.out.println(teacher);
+        sqlSession.close();
+    }
+
+    @Test
+    public void testStudent(){
+        SqlSession sqlSession= MybatisUtils.getSqlSession();
+        StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
+        List<Student> studentList = mapper.getStudent();
+        for (Student student : studentList) {
+            System.out.println(student);
+        }
+        sqlSession.close();
+    }
+}
+
+
+```
+
+查出来的结果：
+
+```
+Student(id=1, name=小明, teacher=Teacher(id=1, name=秦老师))
+Student(id=2, name=小红, teacher=Teacher(id=1, name=秦老师))
+Student(id=3, name=小张, teacher=Teacher(id=1, name=秦老师))
+Student(id=4, name=小李, teacher=Teacher(id=1, name=秦老师))
+Student(id=5, name=小王, teacher=Teacher(id=1, name=秦老师))
+```
+
+### 3. 按照结果嵌套处理
