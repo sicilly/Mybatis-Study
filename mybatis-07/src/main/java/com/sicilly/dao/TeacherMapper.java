@@ -8,8 +8,8 @@ import java.util.List;
 
 public interface TeacherMapper {
     // 获取老师
-    List<Teacher> getTeacher();
+//    List<Teacher> getTeacher();
 
-
-
+    // 获取指定老师及其所有学生的信息
+    Teacher getTeacher(@Param("tid") int id);
 }

@@ -1229,7 +1229,7 @@ public interface UserMapper {
 }
 ```
 
-MybatisUtile
+MybatisUtils
 
 ```java
 package com.sicilly.utils;
@@ -1733,5 +1733,86 @@ public class MyTest {
 
 ```
 Teacher(id=1, name=秦老师, students=null)
+```
+
+### 2.按结果嵌套查询
+
+TeacherMapper.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sicilly.dao.TeacherMapper">
+<!--    按结果嵌套查询-->
+    <select id="getTeacher" resultMap="TeacherStudent">
+        select s.id sid,s.name sname,t.name tname,t.id tid
+        from student s,teacher t
+        where s.tid=t.id and t.id=#{tid}
+    </select>
+    
+    <resultMap id="TeacherStudent" type="Teacher">
+        <result property="id" column="tid"/>
+        <result property="name" column="tname"/>
+        <collection property="students" ofType="Student">
+            <result property="id" column="sid"/>
+            <result property="name" column="sname"/>
+            <result property="tid" column="tid"/>
+        </collection>
+    </resultMap>
+</mapper>
+```
+
+TeacherMapper.java
+
+```java
+package com.sicilly.dao;
+
+import com.sicilly.pojo.Teacher;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
+
+public interface TeacherMapper {
+    // 获取老师
+//    List<Teacher> getTeacher();
+
+    // 获取指定老师及其所有学生的信息
+    Teacher getTeacher(@Param("tid") int id);
+}
+
+```
+
+MyTest.java
+
+```java
+import com.sicilly.dao.TeacherMapper;
+import com.sicilly.pojo.Teacher;
+import com.sicilly.utils.MybatisUtils;
+import org.apache.ibatis.session.SqlSession;
+import org.junit.Test;
+
+import java.util.List;
+
+public class MyTest {
+    @Test
+    public void test(){
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        TeacherMapper mapper = sqlSession.getMapper(TeacherMapper.class);
+        Teacher teacher = mapper.getTeacher(1);
+        System.out.println(teacher);
+        sqlSession.close();
+    }
+}
+
+```
+
+查询结果：
+
+```
+Teacher(id=1, name=秦老师, students=[Student(id=1, name=小明, tid=1), Student(id=2, name=小红, tid=1), Student(id=3, name=小张, tid=1), Student(id=4, name=小李, tid=1), Student(id=5, name=小王, tid=1)])
 ```
 
