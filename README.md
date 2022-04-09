@@ -320,7 +320,7 @@ UserMapper.xml
 
 
 
-UserDapTest.java
+UserDaoTest.java
 
 注意要提交事务！
 
@@ -1916,3 +1916,163 @@ Teacher(id=0, name=秦老师, students=[Student(id=1, name=小明, tid=1), Stude
 - InnoDB底层原理
 - 索引
 - 索引优化
+
+## 动态sql(mybatis-08)
+
+动态sql：根据不同的条件生成不同的SQL语句
+
+### 1. 搭建环境
+
+数据库中建表
+
+```sql
+create table `blog`(
+	`id` varchar(50) not null comment '博客id',
+    `title` varchar(100) not null comment '博客标题',
+    `author` varchar(30) not null comment '博客作者',
+    `create_time` datetime not null comment '创建时间',
+    `views` int(30) not null comment '浏览量'
+	)ENGINE=InnoDB DEFAULT CHARSET=utf8
+```
+
+实体类Blog
+
+```java
+package com.sicilly.pojo;
+
+import lombok.Data;
+
+import java.util.Date;
+
+@Data
+public class Blog {
+    private String id;
+    private String title;
+    private String author;
+    private Date createTime;  // 属性名和字段名不一致
+    private int views;
+}
+```
+
+为了解决的问题，核心配置文件mybatis-config.xml中添加
+
+```xml
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+```
+
+IDUtils
+
+```java
+package com.sicilly.utils;
+import org.junit.Test;
+
+import java.util.UUID;
+
+@SuppressWarnings("all")
+public class IDUtils {
+
+    public static String getId(){
+        return UUID.randomUUID().toString().replaceAll("-","");
+    }
+
+    @Test
+    public void  test(){
+        System.out.println(getId());
+    }
+
+}
+```
+
+接下来要插入数据到blog，可以用java代码插入
+
+BlogMapper
+
+```java
+package com.sicilly.dao;
+
+import com.sicilly.pojo.Blog;
+import com.sicilly.utils.IDUtils;
+import com.sicilly.utils.MybatisUtils;
+import org.apache.ibatis.session.SqlSession;
+import org.junit.Test;
+
+import java.util.Date;
+
+public interface BlogMapper {
+    // 插入数据
+    int addBlog(Blog blog);
+}
+
+```
+
+BlogMapper.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sicilly.dao.BlogMapper">
+    <insert id="addBlog" parameterType="Blog">
+        insert into mybatis.blog (id, title, author, create_time, views) values
+            (#{id}, #{title}, #{author}, #{createTime}, #{views});
+    </insert>
+</mapper>
+```
+
+MyTest
+
+```java
+import com.sicilly.dao.BlogMapper;
+import com.sicilly.pojo.Blog;
+import com.sicilly.utils.IDUtils;
+import com.sicilly.utils.MybatisUtils;
+import org.apache.ibatis.session.SqlSession;
+import org.junit.Test;
+
+import java.util.Date;
+
+public class MyTest {
+
+    @Test
+    public void addBlog(){
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        BlogMapper blogMapper = sqlSession.getMapper(BlogMapper.class);
+
+        Blog blog = new Blog();
+        blog.setId(IDUtils.getId());
+        blog.setAuthor("sicilly");
+        blog.setCreateTime(new Date());
+        blog.setViews(999);
+        blog.setTitle("first");
+
+        blogMapper.addBlog(blog);
+
+        blog.setId(IDUtils.getId());
+        blog.setTitle("second");
+        blogMapper.addBlog(blog);
+
+        blog.setId(IDUtils.getId());
+        blog.setTitle("third");
+        blogMapper.addBlog(blog);
+
+        blog.setId(IDUtils.getId());
+        blog.setTitle("forth");
+        blogMapper.addBlog(blog);
+
+        sqlSession.close();
+    }
+}
+```
+
+插入完毕后：
+
+id																	  title   author    create_time                views
+
+5b5dc1c04b6c420098e3173051e18eee	first	sicilly	2022-04-09 20:17:33	999
+0e97e8969a3e4e36b082352db5f6caab	second	sicilly	2022-04-09 20:17:33	999
+3cac0a0237b74ffd8e20a95b66195e89	third	sicilly	2022-04-09 20:17:33	999
+665b509ebf94460c84701e26360d1740	forth	sicilly	2022-04-09 20:17:33	999

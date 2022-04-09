@@ -6,18 +6,20 @@
   <component name="ChangeListManager">
     <list default="true" id="a124f5d9-0134-4c55-b021-b9a54e0fe494" name="Changes" comment="按查询嵌套处理">
       <change afterPath="$PROJECT_DIR$/mybatis-08/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mybatis-08/src/main/java/com/sicilly/dao/BlogMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mybatis-08/src/main/java/com/sicilly/dao/BlogMapper.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/mybatis-08/src/main/java/com/sicilly/pojo/Blog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mybatis-08/src/main/java/com/sicilly/utils/IDUtils.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/mybatis-08/src/main/java/com/sicilly/utils/MybatisUtils.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/mybatis-08/src/main/resources/com.sicilly/dao/StudentMapper.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/mybatis-08/src/main/resources/com.sicilly/dao/TeacherMapper.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/mybatis-08/src/main/resources/db.properties" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/mybatis-08/src/main/resources/mybatis-config.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mybatis-08/src/test/java/MyTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/97e3b3a0-596c-4f25-9254-92c731ef328c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/97e3b3a0-596c-4f25-9254-92c731ef328c.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-07/src/main/java/com/sicilly/dao/TeacherMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-07/src/main/java/com/sicilly/dao/TeacherMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-07/src/main/resources/com/sicilly/dao/TeacherMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-07/src/main/resources/com/sicilly/dao/TeacherMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-07/src/test/java/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-07/src/test/java/MyTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -86,12 +88,38 @@
       <recent name="dao" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.MyTest.test2">
+  <component name="RunManager" selected="JUnit.MyTest.addBlog">
+    <configuration name="IDUtils.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mybatis-08" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.sicilly.utils.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.sicilly.utils" />
+      <option name="MAIN_CLASS_NAME" value="com.sicilly.utils.IDUtils" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MyTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="mybatis-07" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="MyTest" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MyTest.addBlog" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mybatis-08" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="MyTest" />
+      <option name="METHOD_NAME" value="addBlog" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -116,33 +144,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MyTest.testStudent" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="mybatis-06" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="MyTest" />
-      <option name="METHOD_NAME" value="testStudent" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MyTest.testStudent2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="mybatis-06" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="MyTest" />
-      <option name="METHOD_NAME" value="testStudent2" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.MyTest.addBlog" />
+        <item itemvalue="JUnit.IDUtils.test" />
         <item itemvalue="JUnit.MyTest.test2" />
         <item itemvalue="JUnit.MyTest" />
         <item itemvalue="JUnit.MyTest.test" />
-        <item itemvalue="JUnit.MyTest.testStudent" />
-        <item itemvalue="JUnit.MyTest.testStudent2" />
       </list>
     </recent_temporary>
   </component>
@@ -161,7 +169,7 @@
       <workItem from="1648564208810" duration="2194000" />
       <workItem from="1649134063183" duration="5125000" />
       <workItem from="1649237571348" duration="6702000" />
-      <workItem from="1649484025576" duration="10731000" />
+      <workItem from="1649484025576" duration="13316000" />
     </task>
     <task id="LOCAL-00001" summary="新增readme文件，对第一个mybatis程序进行总结">
       <created>1648268234854</created>
@@ -289,7 +297,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649501371560</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="按查询嵌套处理">
+      <created>1649504992579</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1649504992579</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
