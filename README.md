@@ -1596,3 +1596,142 @@ StudentMapper.xml：
     </resultMap>
 ```
 
+## 一对多处理(mybatis-07)
+
+### 1. 测试环境搭建
+
+实体类 
+
+Student
+
+```java
+package com.sicilly.pojo;
+
+import lombok.Data;
+
+@Data
+public class Student {
+    private int id;
+    private String name;
+    private int tid;
+}
+
+```
+
+Teacher
+
+```java
+package com.sicilly.pojo;
+import lombok.Data;
+
+import java.util.List;
+
+@Data
+public class Teacher {
+    private int id;
+    private String name;
+    // 一个老师拥有多个学生
+    private List<Student> students;
+}
+
+```
+
+TeacherMapper接口
+
+```java
+package com.sicilly.dao;
+
+import com.sicilly.pojo.Teacher;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
+
+public interface TeacherMapper {
+    // 获取老师
+    List<Teacher> getTeacher();
+}
+
+```
+
+TeacherMapper.xml写sql
+
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sicilly.dao.TeacherMapper">
+    <select id="getTeacher" resultType="Teacher">
+        select * from mybatis.teacher;
+    </select>
+</mapper>
+```
+
+核心配置文件mybatis-config.xml 绑定接口
+
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--核心配置文件-->
+<configuration>
+    <properties resource="db.properties"/>
+
+    <!--可以给实体类起别名-->
+    <typeAliases>
+    <!--typeAlias type="com.User" alias="User"/>-->
+        <package name="com.sicilly.pojo"/>
+    </typeAliases>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <!--绑定接口-->
+    <mappers>
+        <mapper class="com.sicilly.dao.TeacherMapper"/>
+        <mapper class="com.sicilly.dao.StudentMapper"/>
+    </mappers>
+</configuration>
+```
+
+MyTest
+
+```java
+import com.sicilly.dao.TeacherMapper;
+import com.sicilly.pojo.Teacher;
+import com.sicilly.utils.MybatisUtils;
+import org.apache.ibatis.session.SqlSession;
+import org.junit.Test;
+
+import java.util.List;
+
+public class MyTest {
+    @Test
+    public void test(){
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        TeacherMapper mapper = sqlSession.getMapper(TeacherMapper.class);
+        List<Teacher> teachers = mapper.getTeacher();
+        for (Teacher teacher : teachers) {
+            System.out.println(teacher);
+        }
+        sqlSession.close();
+    }
+}
+```
+
+查询结果：
+
+```
+Teacher(id=1, name=秦老师, students=null)
+```
+
