@@ -1598,6 +1598,8 @@ StudentMapper.xml：
 
 ## 一对多处理(mybatis-07)
 
+一个老师拥有多个学生，是一对多的关系
+
 ### 1. 测试环境搭建
 
 实体类 
@@ -1735,7 +1737,9 @@ public class MyTest {
 Teacher(id=1, name=秦老师, students=null)
 ```
 
-### 2.按结果嵌套查询
+接下来要解决students=null的问题
+
+### 2.按结果嵌套处理
 
 TeacherMapper.xml
 
@@ -1816,3 +1820,99 @@ public class MyTest {
 Teacher(id=1, name=秦老师, students=[Student(id=1, name=小明, tid=1), Student(id=2, name=小红, tid=1), Student(id=3, name=小张, tid=1), Student(id=4, name=小李, tid=1), Student(id=5, name=小王, tid=1)])
 ```
 
+### 3. 按查询嵌套处理
+
+TeacherMapper.java
+
+```java
+package com.sicilly.dao;
+
+import com.sicilly.pojo.Teacher;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
+
+public interface TeacherMapper {
+
+    // 获取指定老师及其所有学生的信息
+    Teacher getTeacher2(@Param("tid") int id);
+}
+
+```
+
+TeacherMapper.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sicilly.dao.TeacherMapper">
+
+<!--    按查询嵌套-->
+    <select id="getTeacher2" resultMap="TeacherStudent2">
+        select * from mybatis.teacher where id=#{tid}
+    </select>
+    <resultMap id="TeacherStudent2" type="Teacher">
+        <collection property="students" javaType="ArrayList" ofType="Student" select="getTeacherByTeacherId" column="id"/>
+    </resultMap>
+    <select id="getTeacherByTeacherId" resultType="Student">
+        select * from mybatis.student where tid=#{tid}
+    </select>
+</mapper>
+```
+
+MyTest.java
+
+```java
+import com.sicilly.dao.TeacherMapper;
+import com.sicilly.pojo.Teacher;
+import com.sicilly.utils.MybatisUtils;
+import org.apache.ibatis.session.SqlSession;
+import org.junit.Test;
+
+import java.util.List;
+
+public class MyTest {
+
+    @Test
+    public void test2(){
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        TeacherMapper mapper = sqlSession.getMapper(TeacherMapper.class);
+        Teacher teacher = mapper.getTeacher2(1);
+        System.out.println(teacher);
+        sqlSession.close();
+    }
+}
+
+```
+
+查询结果：
+
+```
+Teacher(id=0, name=秦老师, students=[Student(id=1, name=小明, tid=1), Student(id=2, name=小红, tid=1), Student(id=3, name=小张, tid=1), Student(id=4, name=小李, tid=1), Student(id=5, name=小王, tid=1)])
+
+```
+
+### 4. 小结
+
+1. 关联 - association 【多对一】
+2. 集合 - collection 【一对多】
+3. javaType 和 ofType
+   1. javaType 用来指定实体类中属性的类型
+   2. ofType 用来指定映射到List或者集合中的 pojo类型，泛型中的约束类型
+
+注意点：
+
+- 保证sql的可读性，尽量保证通俗易懂
+- 注意一对多和多对一中，属性名和字段的问题
+- 如果问题不好排查错误，可以使用日志，建议log4j
+
+面试高频：
+
+- Mysql引擎
+- InnoDB底层原理
+- 索引
+- 索引优化

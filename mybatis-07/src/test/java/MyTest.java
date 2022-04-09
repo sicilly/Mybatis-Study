@@ -15,4 +15,13 @@ public class MyTest {
         System.out.println(teacher);
         sqlSession.close();
     }
+
+    @Test
+    public void test2(){
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        TeacherMapper mapper = sqlSession.getMapper(TeacherMapper.class);
+        mapper.getTeacher2(1)
+        System.out.println(teacher);
+        sqlSession.close();
+    }
 }

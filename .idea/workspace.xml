@@ -4,13 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a124f5d9-0134-4c55-b021-b9a54e0fe494" name="Changes" comment="一对多处理，测试环境搭建">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/97e3b3a0-596c-4f25-9254-92c731ef328c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/97e3b3a0-596c-4f25-9254-92c731ef328c.xml" afterDir="false" />
+    <list default="true" id="a124f5d9-0134-4c55-b021-b9a54e0fe494" name="Changes" comment="按查询嵌套处理">
+      <change afterPath="$PROJECT_DIR$/mybatis-08/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mybatis-08/src/main/java/com/sicilly/pojo/Blog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mybatis-08/src/main/java/com/sicilly/utils/MybatisUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mybatis-08/src/main/resources/com.sicilly/dao/StudentMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mybatis-08/src/main/resources/com.sicilly/dao/TeacherMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mybatis-08/src/main/resources/db.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mybatis-08/src/main/resources/mybatis-config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mybatis-07/src/main/java/com/sicilly/dao/TeacherMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-07/src/main/java/com/sicilly/dao/TeacherMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mybatis-07/src/main/resources/com/sicilly/dao/TeacherMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-07/src/main/resources/com/sicilly/dao/TeacherMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mybatis-07/src/test/java/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-07/src/test/java/MyTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +60,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/mybatis-07/src/main/java" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/mybatis-08/src/main/resources" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -60,31 +68,25 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\code\SSM\Mybatis-Study\mybatis-08\src\main\resources" />
       <recent name="D:\code\SSM\Mybatis-Study\mybatis-07\src\main\java" />
       <recent name="D:\code\SSM\Mybatis-Study\mybatis-07\src\main\resources" />
       <recent name="D:\code\SSM\Mybatis-Study\mybatis-06\src\main\resources" />
       <recent name="D:\code\SSM\Mybatis-Study\mybatis-05\src\main\resources" />
-      <recent name="D:\code\SSM\Mybatis-Study\mybatis-04\src\main\java" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\code\SSM\Mybatis-Study\mybatis-08\src\main\resources\com.sicilly" />
       <recent name="D:\code\SSM\Mybatis-Study\mybatis-07\src\main\resources\com\sicilly" />
       <recent name="D:\code\SSM\Mybatis-Study\images" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.sicilly.dao" />
       <recent name="com.sicilly.utils" />
+      <recent name="com.sicilly.dao" />
       <recent name="com.sicilly.pojo" />
       <recent name="dao" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.MyTest">
-    <configuration name="MyTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="MyTest" />
-      <module name="mybatis-06" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.MyTest.test2">
     <configuration name="MyTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="mybatis-07" />
       <option name="PACKAGE_NAME" value="" />
@@ -99,6 +101,16 @@
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="MyTest" />
       <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MyTest.test2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mybatis-07" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="MyTest" />
+      <option name="METHOD_NAME" value="test2" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -126,11 +138,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.MyTest.test2" />
         <item itemvalue="JUnit.MyTest" />
         <item itemvalue="JUnit.MyTest.test" />
         <item itemvalue="JUnit.MyTest.testStudent" />
         <item itemvalue="JUnit.MyTest.testStudent2" />
-        <item itemvalue="Application.MyTest" />
       </list>
     </recent_temporary>
   </component>
@@ -149,7 +161,7 @@
       <workItem from="1648564208810" duration="2194000" />
       <workItem from="1649134063183" duration="5125000" />
       <workItem from="1649237571348" duration="6702000" />
-      <workItem from="1649484025576" duration="7406000" />
+      <workItem from="1649484025576" duration="10731000" />
     </task>
     <task id="LOCAL-00001" summary="新增readme文件，对第一个mybatis程序进行总结">
       <created>1648268234854</created>
@@ -270,7 +282,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649498466412</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="按结果嵌套查询">
+      <created>1649501371559</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1649501371560</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -303,6 +322,8 @@
     <MESSAGE value="按照查询嵌套处理" />
     <MESSAGE value="按照结果嵌套处理" />
     <MESSAGE value="一对多处理，测试环境搭建" />
-    <option name="LAST_COMMIT_MESSAGE" value="一对多处理，测试环境搭建" />
+    <MESSAGE value="按结果嵌套查询" />
+    <MESSAGE value="按查询嵌套处理" />
+    <option name="LAST_COMMIT_MESSAGE" value="按查询嵌套处理" />
   </component>
 </project>
