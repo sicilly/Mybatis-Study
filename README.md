@@ -2193,3 +2193,34 @@ public class MyTest {
 </update>
 ```
 trim 可以自定义
+
+### SQL片段
+
+有些时候我们有一些公共部分
+
+1. 使用sql便签抽取公共部分
+
+2. 在使用的地方使用include标签
+
+```xml
+<sql id="if-title-author">
+    <if test="title != null">
+        title = #{title}
+    </if>
+    <if test="author != null">
+        and author = #{author}
+    </if>
+</sql>
+
+<select id="queryBlogIF" parameterType="map" resultType="Blog">
+    select * from mybatis.blog
+    <where>
+        <include refid="if-title-author"></include>
+    </where>
+</select>
+```
+
+注意：
+
+- 最好基于单表
+- sql里不要存在where标签
