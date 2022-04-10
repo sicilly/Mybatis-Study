@@ -2224,3 +2224,64 @@ trim 可以自定义
 
 - 最好基于单表
 - sql里不要存在where标签
+
+### 5. foreach
+
+为了方便调试，先把数据库中blog的id改为1，2，3，4
+
+然后需求是查询第1-2-3号记录的博客
+
+sql语句是这样写：
+
+```sql
+select * from mybatis.blog where 1=1 and (id=1 or id=2 or id=3)
+```
+
+我们要想办法在代码中把这条sql拼接出来，就用到foreach标签
+
+BlogMapper
+
+```java
+    // 查询第1-2-3号记录的博客
+    List<Blog> queryBlogForeach(Map map);
+```
+
+BlogMapper.xml
+
+```xml
+    <select id="queryBlogForeach" parameterType="map" resultType="blog">
+        select * from mybatis.blog
+        <where>
+            <foreach collection="ids" item="id" open="and (" close=")" separator="or">
+                id=#{id}
+            </foreach>
+        </where>
+    </select>
+```
+
+MyTest
+
+```java
+    @Test
+    public void queryBlogForeach(){
+        SqlSession sqlSession=MybatisUtils.getSqlSession();
+        BlogMapper mapper = sqlSession.getMapper(BlogMapper.class);
+        HashMap map=new HashMap();
+        ArrayList<Integer> list=new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        map.put("ids",list);
+        List<Blog> blogs=mapper.queryBlogForeach(map);
+        for (Blog blog : blogs) {
+            System.out.println(blog);
+        }
+        sqlSession.close();
+    }
+```
+
+动态sql就是在拼接sql语句，我们只要保证sql的正确性，按照sql的格式，去排列组合就可以了
+
+建议：
+
+先在mysql中写出完整的sql，再对应修改成动态sql实现通用即可。
