@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a124f5d9-0134-4c55-b021-b9a54e0fe494" name="Changes" comment="动态sql，if语句">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mybatis-08/src/main/java/com/sicilly/dao/BlogMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-08/src/main/java/com/sicilly/dao/BlogMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mybatis-08/src/main/java/com/sicilly/dao/BlogMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-08/src/main/java/com/sicilly/dao/BlogMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mybatis-08/src/test/java/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-08/src/test/java/MyTest.java" afterDir="false" />
@@ -77,7 +76,7 @@
       <recent name="dao" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.MyTest.queryBlogIF">
+  <component name="RunManager" selected="JUnit.MyTest.updateBlog">
     <configuration name="IDUtils.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="mybatis-08" />
       <extension name="coverage">
@@ -94,20 +93,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MyTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="mybatis-07" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="MyTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="MyTest.addBlog" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="mybatis-08" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="MyTest" />
       <option name="METHOD_NAME" value="addBlog" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MyTest.queryBlogChoose" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mybatis-08" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="MyTest" />
+      <option name="METHOD_NAME" value="queryBlogChoose" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -123,11 +123,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MyTest.test2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="mybatis-07" />
+    <configuration name="MyTest.updateBlog" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mybatis-08" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="MyTest" />
-      <option name="METHOD_NAME" value="test2" />
+      <option name="METHOD_NAME" value="updateBlog" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -135,11 +135,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.MyTest.updateBlog" />
+        <item itemvalue="JUnit.MyTest.queryBlogChoose" />
         <item itemvalue="JUnit.MyTest.queryBlogIF" />
         <item itemvalue="JUnit.MyTest.addBlog" />
         <item itemvalue="JUnit.IDUtils.test" />
-        <item itemvalue="JUnit.MyTest.test2" />
-        <item itemvalue="JUnit.MyTest" />
       </list>
     </recent_temporary>
   </component>
@@ -160,7 +160,7 @@
       <workItem from="1649237571348" duration="6702000" />
       <workItem from="1649484025576" duration="14079000" />
       <workItem from="1649522004042" duration="11000" />
-      <workItem from="1649567662613" duration="3735000" />
+      <workItem from="1649567662613" duration="7109000" />
     </task>
     <task id="LOCAL-00001" summary="新增readme文件，对第一个mybatis程序进行总结">
       <created>1648268234854</created>
@@ -302,7 +302,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649510828018</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="动态sql，if语句">
+      <created>1649573806626</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1649573806626</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

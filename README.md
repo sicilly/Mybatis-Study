@@ -2156,3 +2156,40 @@ public class MyTest {
 }
 ```
 
+### 3. choose、when、otherwise
+
+```xml
+<select id="queryBlogchoose" parameterType="map" resultType="Blog">
+    select * from mybatis.blog
+    <where>
+        <choose>
+            <when test="title != null">
+                title = #{title}
+            </when>
+            <when test="author != null">
+                and author = #{author}
+            </when>
+            <otherwise>
+                and views = #{views}
+            </otherwise>
+        </choose>
+    </where>
+</select>
+```
+
+### 4. trim、where、set
+```xml
+<update id="updateBlog" parameterType="map">
+    update mybatis.blog
+    <set>
+        <if test="title != null">
+            title = #{title},
+        </if>
+        <if test="author != null">
+            author = #{author}
+        </if>
+    </set>
+    where id = #{id}
+</update>
+```
+trim 可以自定义
