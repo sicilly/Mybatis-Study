@@ -4,23 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a124f5d9-0134-4c55-b021-b9a54e0fe494" name="Changes" comment="按查询嵌套处理">
-      <change afterPath="$PROJECT_DIR$/mybatis-08/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mybatis-08/src/main/java/com/sicilly/dao/BlogMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mybatis-08/src/main/java/com/sicilly/dao/BlogMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mybatis-08/src/main/java/com/sicilly/pojo/Blog.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mybatis-08/src/main/java/com/sicilly/utils/IDUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mybatis-08/src/main/java/com/sicilly/utils/MybatisUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mybatis-08/src/main/resources/com.sicilly/dao/StudentMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mybatis-08/src/main/resources/com.sicilly/dao/TeacherMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mybatis-08/src/main/resources/db.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mybatis-08/src/main/resources/mybatis-config.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mybatis-08/src/test/java/MyTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/97e3b3a0-596c-4f25-9254-92c731ef328c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/97e3b3a0-596c-4f25-9254-92c731ef328c.xml" afterDir="false" />
+    <list default="true" id="a124f5d9-0134-4c55-b021-b9a54e0fe494" name="Changes" comment="动态sql，if语句">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mybatis-08/src/main/java/com/sicilly/dao/BlogMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-08/src/main/java/com/sicilly/dao/BlogMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mybatis-08/src/main/java/com/sicilly/dao/BlogMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-08/src/main/java/com/sicilly/dao/BlogMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mybatis-08/src/test/java/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-08/src/test/java/MyTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +77,7 @@
       <recent name="dao" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.MyTest.addBlog">
+  <component name="RunManager" selected="JUnit.MyTest.queryBlogIF">
     <configuration name="IDUtils.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="mybatis-08" />
       <extension name="coverage">
@@ -124,11 +113,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MyTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="mybatis-07" />
+    <configuration name="MyTest.queryBlogIF" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mybatis-08" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="MyTest" />
-      <option name="METHOD_NAME" value="test" />
+      <option name="METHOD_NAME" value="queryBlogIF" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -146,11 +135,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.MyTest.queryBlogIF" />
         <item itemvalue="JUnit.MyTest.addBlog" />
         <item itemvalue="JUnit.IDUtils.test" />
         <item itemvalue="JUnit.MyTest.test2" />
         <item itemvalue="JUnit.MyTest" />
-        <item itemvalue="JUnit.MyTest.test" />
       </list>
     </recent_temporary>
   </component>
@@ -169,7 +158,9 @@
       <workItem from="1648564208810" duration="2194000" />
       <workItem from="1649134063183" duration="5125000" />
       <workItem from="1649237571348" duration="6702000" />
-      <workItem from="1649484025576" duration="13316000" />
+      <workItem from="1649484025576" duration="14079000" />
+      <workItem from="1649522004042" duration="11000" />
+      <workItem from="1649567662613" duration="3735000" />
     </task>
     <task id="LOCAL-00001" summary="新增readme文件，对第一个mybatis程序进行总结">
       <created>1648268234854</created>
@@ -304,7 +295,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649504992579</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="动态sql，环境搭建">
+      <created>1649510828018</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1649510828018</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -339,6 +337,8 @@
     <MESSAGE value="一对多处理，测试环境搭建" />
     <MESSAGE value="按结果嵌套查询" />
     <MESSAGE value="按查询嵌套处理" />
-    <option name="LAST_COMMIT_MESSAGE" value="按查询嵌套处理" />
+    <MESSAGE value="动态sql，环境搭建" />
+    <MESSAGE value="动态sql，if语句" />
+    <option name="LAST_COMMIT_MESSAGE" value="动态sql，if语句" />
   </component>
 </project>

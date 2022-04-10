@@ -2076,3 +2076,83 @@ id																	  title   author    create_time                views
 0e97e8969a3e4e36b082352db5f6caab	second	sicilly	2022-04-09 20:17:33	999
 3cac0a0237b74ffd8e20a95b66195e89	third	sicilly	2022-04-09 20:17:33	999
 665b509ebf94460c84701e26360d1740	forth	sicilly	2022-04-09 20:17:33	999
+
+
+
+### 2. if
+
+根据条件查询博客
+
+BlogMapper
+
+```java
+package com.sicilly.dao;
+
+import com.sicilly.pojo.Blog;
+
+import java.util.List;
+import java.util.Map;
+
+public interface BlogMapper {
+
+    // 根据条件查询博客
+    List<Blog> queryBlogIF(Map map);
+}
+
+```
+
+BlogMapper.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sicilly.dao.BlogMapper">
+
+    <select id="queryBlogIF" parameterType="map" resultType="blog">
+        select * from mybatis.blog where 1=1
+        <if test="title!=null">
+            and title=#{title}
+        </if>
+        <if test="author!=null">
+            and author=#{author}
+        </if>
+    </select>
+</mapper>
+```
+
+MyTest
+
+```java
+import com.sicilly.dao.BlogMapper;
+import com.sicilly.pojo.Blog;
+import com.sicilly.utils.IDUtils;
+import com.sicilly.utils.MybatisUtils;
+import org.apache.ibatis.session.SqlSession;
+import org.junit.Test;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+
+public class MyTest {
+
+    @Test
+    public void queryBlogIF(){
+        SqlSession sqlSession=MybatisUtils.getSqlSession();
+        BlogMapper mapper = sqlSession.getMapper(BlogMapper.class);
+        HashMap map=new HashMap();
+//        map.put("title","first");
+        map.put("author","sicilly");
+        List<Blog> blogs = mapper.queryBlogIF(map);
+        for (Blog blog : blogs) {
+            System.out.println(blog);
+        }
+
+        sqlSession.close();
+    }
+}
+```
+

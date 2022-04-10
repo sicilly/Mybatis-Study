@@ -1,14 +1,14 @@
 package com.sicilly.dao;
 
 import com.sicilly.pojo.Blog;
-import com.sicilly.utils.IDUtils;
-import com.sicilly.utils.MybatisUtils;
-import org.apache.ibatis.session.SqlSession;
-import org.junit.Test;
 
-import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 public interface BlogMapper {
     // 插入数据
     int addBlog(Blog blog);
+
+    // 根据条件查询博客
+    List<Blog> queryBlogIF(Map map);
 }
