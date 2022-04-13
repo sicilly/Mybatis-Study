@@ -5,18 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a124f5d9-0134-4c55-b021-b9a54e0fe494" name="Changes" comment="一级缓存">
-      <change afterPath="$PROJECT_DIR$/mybatis-09/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mybatis-09/src/main/java/com/sicilly/dao/UserMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mybatis-09/src/main/java/com/sicilly/dao/UserMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mybatis-09/src/main/java/com/sicilly/pojo/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mybatis-09/src/main/java/com/sicilly/utils/MybatisUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mybatis-09/src/main/resources/db.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mybatis-09/src/main/resources/mybatis-config.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mybatis-09/src/test/java/MyTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mybatis-09/src/main/java/com/sicilly/dao/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-09/src/main/java/com/sicilly/dao/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mybatis-09/src/main/java/com/sicilly/pojo/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-09/src/main/java/com/sicilly/pojo/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mybatis-09/src/main/resources/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-09/src/main/resources/mybatis-config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mybatis-09/src/test/java/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-09/src/test/java/MyTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,12 +79,11 @@
     </key>
   </component>
   <component name="RunManager" selected="JUnit.MyTest.test">
-    <configuration name="MyTest.queryBlogChoose" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="mybatis-08" />
+    <configuration name="MyTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mybatis-09" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="MyTest" />
-      <option name="METHOD_NAME" value="queryBlogChoose" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -138,10 +131,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.MyTest.test" />
+        <item itemvalue="JUnit.MyTest" />
         <item itemvalue="JUnit.MyTest.queryBlogForeach" />
         <item itemvalue="JUnit.MyTest.queryBlogIF" />
         <item itemvalue="JUnit.MyTest.updateBlog" />
-        <item itemvalue="JUnit.MyTest.queryBlogChoose" />
       </list>
     </recent_temporary>
   </component>
@@ -163,7 +156,7 @@
       <workItem from="1649484025576" duration="14079000" />
       <workItem from="1649522004042" duration="11000" />
       <workItem from="1649567662613" duration="10904000" />
-      <workItem from="1649851736164" duration="7000000" />
+      <workItem from="1649851736164" duration="9029000" />
     </task>
     <task id="LOCAL-00001" summary="新增readme文件，对第一个mybatis程序进行总结">
       <created>1648268234854</created>
@@ -333,7 +326,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649584981769</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="一级缓存">
+      <created>1649862895706</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1649862895706</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

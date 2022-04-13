@@ -2425,3 +2425,99 @@ Returned connection 858232531 to pool.
 
 小结：一级缓存默认开启，只在一次sqlseesion中有效
 
+### 2. 二级缓存
+
+1. 开启全局缓存
+
+```xml
+<setting name="cacheEnabled" value="true"/>
+```
+
+2. 在当前mapper.xml中使用二级缓存
+
+```xml
+<cache eviction="FIFO"
+       flushInterval="60000"
+       size="512"
+       readOnly="true"/>
+```
+
+3. 测试
+
+```java
+import com.sicilly.dao.UserMapper;
+import com.sicilly.pojo.User;
+import com.sicilly.utils.MybatisUtils;
+import org.apache.ibatis.session.SqlSession;
+import org.junit.Test;
+
+public class MyTest {
+    @Test
+    public void test(){
+        SqlSession sqlSession= MybatisUtils.getSqlSession();
+        SqlSession sqlSession2= MybatisUtils.getSqlSession();
+
+        UserMapper mapper=sqlSession.getMapper(UserMapper.class);
+        User user=mapper.queryUserById(1);
+        System.out.println(user);
+        sqlSession.close();
+
+        UserMapper mapper2=sqlSession2.getMapper(UserMapper.class);
+        User user2=mapper2.queryUserById(1);
+        System.out.println(user2);
+
+        System.out.println(user==user2);
+        sqlSession2.close();
+
+    }
+}
+
+```
+
+报错：
+
+```
+Caused by: java.io.NotSerializableException: com.sicilly.pojo.User
+```
+
+解决：
+
+实体类User要序列化
+
+```java
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class User implements Serializable {
+    private int id;
+    private String name;
+    private String pwd;
+}
+
+```
+
+输出：
+
+```
+Created connection 795011696.
+==>  Preparing: select * from user where id=? 
+==> Parameters: 1(Integer)
+<==    Columns: id, name, pwd
+<==        Row: 1, bobo, 123456
+<==      Total: 1
+User(id=1, name=bobo, pwd=123456)
+Closing JDBC Connection [com.mysql.jdbc.JDBC4Connection@2f62ea70]
+Returned connection 795011696 to pool.
+Cache Hit Ratio [com.sicilly.dao.UserMapper]: 0.5
+User(id=1, name=bobo, pwd=123456)
+false
+
+Process finished with exit code 0
+
+```
+小结：
+
+- 只有开启了二级缓存，在Mapper下有效
+- 所有数据都会先放在一级缓存
+- 只有当会话提交，或者关闭的时候，才会提交到二级缓存
+
