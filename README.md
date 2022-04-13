@@ -2521,3 +2521,6 @@ Process finished with exit code 0
 - 所有数据都会先放在一级缓存
 - 只有当会话提交，或者关闭的时候，才会提交到二级缓存
 
+### 3. 缓存原理
+
+![img](https://img-blog.csdnimg.cn/img_convert/1c76be976ecf0e66b135ed0894c5c1f7.png)
