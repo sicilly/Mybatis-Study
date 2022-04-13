@@ -2285,3 +2285,143 @@ MyTest
 建议：
 
 先在mysql中写出完整的sql，再对应修改成动态sql实现通用即可。
+
+## 缓存（mybatis-09）
+
+### 1. 一级缓存
+
+1. 开启日志
+2. 测试一个session中查询两次相同记录
+
+```java
+import com.sicilly.dao.UserMapper;
+import com.sicilly.pojo.User;
+import com.sicilly.utils.MybatisUtils;
+import org.apache.ibatis.session.SqlSession;
+import org.junit.Test;
+
+public class MyTest {
+    @Test
+    public void test(){
+        SqlSession sqlSession= MybatisUtils.getSqlSession();
+        UserMapper mapper=sqlSession.getMapper(UserMapper.class);
+        User user=mapper.queryUserById(1);  // 查询用户1
+        System.out.println(user);
+        User user2=mapper.queryUserById(1); // 查询用户1
+        System.out.println(user2);
+        System.out.println(user==user2);
+        sqlSession.close();
+
+    }
+}
+```
+
+结果输出：
+
+```
+Opening JDBC Connection
+Wed Apr 13 21:44:12 CST 2022 WARN: Establishing SSL connection without server's identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn't set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to 'false'. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
+Created connection 987547666.
+==>  Preparing: select * from user where id=? 
+==> Parameters: 1(Integer)
+<==    Columns: id, name, pwd
+<==        Row: 1, bobo, 123456
+<==      Total: 1
+User(id=1, name=bobo, pwd=123456)
+User(id=1, name=bobo, pwd=123456)
+true
+Closing JDBC Connection [com.mysql.jdbc.JDBC4Connection@3adcc812]
+Returned connection 987547666 to pool.
+
+Process finished with exit code 0
+```
+
+
+
+缓存失效：
+
+- 映射语句文件中的所有 insert、update 和 delete 语句会刷新缓存。
+
+```java
+import com.sicilly.dao.UserMapper;
+import com.sicilly.pojo.User;
+import com.sicilly.utils.MybatisUtils;
+import org.apache.ibatis.session.SqlSession;
+import org.junit.Test;
+
+public class MyTest {
+    @Test
+    public void test(){
+        SqlSession sqlSession= MybatisUtils.getSqlSession();
+        UserMapper mapper=sqlSession.getMapper(UserMapper.class);
+        User user=mapper.queryUserById(1);   // 查询用户1
+        System.out.println(user);
+        mapper.updateUser(new User(2,"aaaa","bbbb"));  // 更新用户2
+        User user2=mapper.queryUserById(1);   // 查询用户1
+        System.out.println(user2);
+        System.out.println(user==user2);
+        sqlSession.close();
+    }
+}
+```
+
+输出结果：查询了两次
+
+```
+Created connection 1502335674.
+==>  Preparing: select * from user where id=? 
+==> Parameters: 1(Integer)
+<==    Columns: id, name, pwd
+<==        Row: 1, bobo, 123456
+<==      Total: 1
+User(id=1, name=bobo, pwd=123456)
+==>  Preparing: update mybatis.user set name=?, pwd=? where id=? 
+==> Parameters: aaaa(String), bbbb(String), 2(Integer)
+<==    Updates: 1
+==>  Preparing: select * from user where id=? 
+==> Parameters: 1(Integer)
+<==    Columns: id, name, pwd
+<==        Row: 1, bobo, 123456
+<==      Total: 1
+User(id=1, name=bobo, pwd=123456)
+false
+Closing JDBC Connection [com.mysql.jdbc.JDBC4Connection@598bd2ba]
+Returned connection 1502335674 to pool.
+
+Process finished with exit code 0
+
+```
+
+- 查询不同的mapper.xml
+
+- 手动清除缓存
+
+```java
+sqlSession.clearCache();  // 手动清理缓存
+```
+
+输出：
+
+```
+Opening JDBC Connection
+Wed Apr 13 22:33:32 CST 2022 WARN: Establishing SSL connection without server's identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn't set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to 'false'. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
+Created connection 858232531.
+==>  Preparing: select * from user where id=? 
+==> Parameters: 1(Integer)
+<==    Columns: id, name, pwd
+<==        Row: 1, bobo, 123456
+<==      Total: 1
+User(id=1, name=bobo, pwd=123456)
+==>  Preparing: select * from user where id=? 
+==> Parameters: 1(Integer)
+<==    Columns: id, name, pwd
+<==        Row: 1, bobo, 123456
+<==      Total: 1
+User(id=1, name=bobo, pwd=123456)
+false
+Closing JDBC Connection [com.mysql.jdbc.JDBC4Connection@332796d3]
+Returned connection 858232531 to pool.
+```
+
+小结：一级缓存默认开启，只在一次sqlseesion中有效
+

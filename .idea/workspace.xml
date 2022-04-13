@@ -4,12 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a124f5d9-0134-4c55-b021-b9a54e0fe494" name="Changes" comment="sql片段">
+    <list default="true" id="a124f5d9-0134-4c55-b021-b9a54e0fe494" name="Changes" comment="一级缓存">
+      <change afterPath="$PROJECT_DIR$/mybatis-09/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mybatis-09/src/main/java/com/sicilly/dao/UserMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mybatis-09/src/main/java/com/sicilly/dao/UserMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mybatis-09/src/main/java/com/sicilly/pojo/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mybatis-09/src/main/java/com/sicilly/utils/MybatisUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mybatis-09/src/main/resources/db.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mybatis-09/src/main/resources/mybatis-config.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mybatis-09/src/test/java/MyTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-08/src/main/java/com/sicilly/dao/BlogMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-08/src/main/java/com/sicilly/dao/BlogMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-08/src/main/java/com/sicilly/dao/BlogMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-08/src/main/java/com/sicilly/dao/BlogMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis-08/src/test/java/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis-08/src/test/java/MyTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +58,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/mybatis-08/src/main/resources" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/mybatis-09/src/main/resources" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -59,11 +66,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\code\SSM\Mybatis-Study\mybatis-09\src\main\resources" />
       <recent name="D:\code\SSM\Mybatis-Study\mybatis-08\src\main\resources" />
       <recent name="D:\code\SSM\Mybatis-Study\mybatis-07\src\main\java" />
       <recent name="D:\code\SSM\Mybatis-Study\mybatis-07\src\main\resources" />
       <recent name="D:\code\SSM\Mybatis-Study\mybatis-06\src\main\resources" />
-      <recent name="D:\code\SSM\Mybatis-Study\mybatis-05\src\main\resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\code\SSM\Mybatis-Study\mybatis-08\src\main\resources\com.sicilly" />
@@ -77,17 +84,7 @@
       <recent name="dao" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.MyTest.queryBlogForeach">
-    <configuration name="MyTest.addBlog" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="mybatis-08" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="MyTest" />
-      <option name="METHOD_NAME" value="addBlog" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.MyTest.test">
     <configuration name="MyTest.queryBlogChoose" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="mybatis-08" />
       <option name="PACKAGE_NAME" value="" />
@@ -118,6 +115,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="MyTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mybatis-09" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="MyTest" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MyTest.updateBlog" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="mybatis-08" />
       <option name="PACKAGE_NAME" value="" />
@@ -130,11 +137,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.MyTest.test" />
         <item itemvalue="JUnit.MyTest.queryBlogForeach" />
         <item itemvalue="JUnit.MyTest.queryBlogIF" />
         <item itemvalue="JUnit.MyTest.updateBlog" />
         <item itemvalue="JUnit.MyTest.queryBlogChoose" />
-        <item itemvalue="JUnit.MyTest.addBlog" />
       </list>
     </recent_temporary>
   </component>
@@ -155,7 +162,8 @@
       <workItem from="1649237571348" duration="6702000" />
       <workItem from="1649484025576" duration="14079000" />
       <workItem from="1649522004042" duration="11000" />
-      <workItem from="1649567662613" duration="10619000" />
+      <workItem from="1649567662613" duration="10904000" />
+      <workItem from="1649851736164" duration="7000000" />
     </task>
     <task id="LOCAL-00001" summary="新增readme文件，对第一个mybatis程序进行总结">
       <created>1648268234854</created>
@@ -318,7 +326,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649582271024</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="动态sql，foreach">
+      <created>1649584981768</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1649584981769</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -357,6 +372,9 @@
     <MESSAGE value="动态sql，if语句" />
     <MESSAGE value="动态sql，常用标签" />
     <MESSAGE value="sql片段" />
-    <option name="LAST_COMMIT_MESSAGE" value="sql片段" />
+    <MESSAGE value="foreach" />
+    <MESSAGE value="动态sql，foreach" />
+    <MESSAGE value="一级缓存" />
+    <option name="LAST_COMMIT_MESSAGE" value="一级缓存" />
   </component>
 </project>
